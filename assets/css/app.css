@@ -80,6 +80,12 @@ span, p, h1, h2, h3, label {
 .table #file-input {
   opacity: 0;
 }
+.table .image form label {
+  cursor: pointer;
+}
+.table .image form label.active {
+  visibility: hidden;
+}
 .table img {
   width: 100px;
   height: 100px;

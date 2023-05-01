@@ -26,6 +26,16 @@ span,p,h1,h2,h3, label{
   #file-input{
     opacity: 0;
   }
+  .image{
+    form{
+        label{
+            cursor: pointer;
+            &.active{
+                visibility: hidden;
+            }
+        }
+    }
+  }
   img{
       width: 100px;
       height: 100px;
