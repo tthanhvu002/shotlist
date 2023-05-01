@@ -1,0 +1,50 @@
+.modal-al {
+  visibility: hidden;
+  transition: 0.2s ease;
+  width: 400px;
+  z-index: 99;
+  position: absolute;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  opacity: 0;
+  top: 50px;
+  &.active {
+    opacity: 1;
+    top: 50px;
+    visibility: visible;
+  }
+  h3 {
+    font-size: 18px;
+    border-bottom: 2px solid #777;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .list {
+    ul {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    li {
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+}
+
+input[type="radio"] {
+  width: 18px !important;
+  height: 18px;
+}
+input[type="checkbox"] {
+  width: 20px !important;
+  height: 20px;
+}
+.popup-btn{
+  cursor: pointer;
+}

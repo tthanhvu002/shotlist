@@ -15,38 +15,371 @@
   </head>
   <body>
     <div class="wrapper">
-        <div class="container">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
+      <div class="container">
+        <div class="table">
+          <div class="table-row">
+            <div class="col scene true">
+              <div class="row-al">
+                <h2>Scene</h2>
+                <input class="content" type="text" placeholder="abc" />
+              </div>
+            </div>
+            <div class="col shot-size true">
+              <h2>Shot Size</h2>
+              <div class="content">
+                <div class="popup-btn">Shot size</div>
+                <div class="modal-al">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="list">
+                        <h3>Close ups</h3>
+                        <ul>
+                          <li class="shot-size-input">
+                            <input
+                              type="radio"
+                              name="shot-size"
+                              id="Close-up"
+                            />
+                            <label for="Close-up">Close-up</label>
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              type="radio"
+                              id="Medium close-up"
+                              name="shot-size"
+                            />
+                            <label for="Medium close-up">Medium close-up</label>
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              type="radio"
+                              id="Extreme close-up"
+                              name="shot-size"
+                            />
+                            <label for="Extreme close-up"
+                              >Extreme close-up</label
+                            >
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              id="Wide close-up"
+                              type="radio"
+                              name="shot-size"
+                            />
+                            <label for="Wide close-up">Wide close-up</label>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="list">
+                        <h3>Medium Shots</h3>
+                        <ul>
+                          <li class="shot-size-input">
+                            <input
+                              type="radio"
+                              name="shot-size"
+                              id="Medium Shot"
+                            />
+                            <label for="Medium Shot">Medium Shot</label>
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              type="radio"
+                              id="Close Shot"
+                              name="shot-size"
+                            />
+                            <label for="Close Shot">Close Shot</label>
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              type="radio"
+                              id="Medium Close Shot"
+                              name="shot-size"
+                            />
+                            <label for="Medium Close Shot"
+                              >Medium Close Shot</label
+                            >
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              id="Wide close-up"
+                              type="radio"
+                              name="shot-size"
+                            />
+                            <label for="Wide close-up">Wide close-up</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="list">
+                        <h3>Long Shots</h3>
+                        <ul>
+                          <li class="shot-size-input">
+                            <input
+                              type="radio"
+                              name="shot-size"
+                              id="Wide Shot"
+                            />
+                            <label for="Wide Shot">Wide Shot</label>
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              type="radio"
+                              id="Extreme Wide Shot"
+                              name="shot-size"
+                            />
+                            <label for="Extreme Wide Shot"
+                              >Extreme Wide Shot</label
+                            >
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              type="radio"
+                              id="Full Shot"
+                              name="shot-size"
+                            />
+                            <label for="Full Shot">Full Shot</label>
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              id="Medium Full Shot"
+                              type="radio"
+                              name="shot-size"
+                            />
+                            <label for="Medium Full Shot"
+                              >Medium Full Shot</label
+                            >
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              type="radio"
+                              id="Long Shot"
+                              name="shot-size"
+                            />
+                            <label for="Long Shot">Long Shot</label>
+                          </li>
+                          <li class="shot-size-input">
+                            <input
+                              id="Extreme Long Shot"
+                              type="radio"
+                              name="shot-size"
+                            />
+                            <label for="Extreme Long Shot"
+                              >Extreme Long Shot</label
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col shot-type true">
+              <h2>Shot Type</h2>
+              <div class="content">
+                <div class="popup-btn">Shot type</div>
+                <div class="modal-al">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="list">
+                        <h3>Camera Height</h3>
+                        <ul>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              name="shot-size"
+                              id="Close-up"
+                            />
+                            <label> Eye Level </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              id="Medium close-up"
+                              name="shot-size"
+                            />
+                            <label>Low Angle </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              id="Extreme close-up"
+                              name="shot-size"
+                            />
+                            <label>High Angle </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input 
+                              id="Wide close-up"
+                              type="checkbox"
+                              name="shot-size"
+                            />
+                            <label>Overhead </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              id="Wide close-up"
+                              type="checkbox"
+                              name="shot-size"
+                            />
+                            <label> Shoulder Level </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              id="Wide close-up"
+                              type="checkbox"
+                              name="shot-size"
+                            />
+                            <label> Hip Level </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              id="Wide close-up"
+                              type="checkbox"
+                              name="shot-size"
+                            />
+                            <label> Knee Level </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              id="Wide close-up"
+                              type="checkbox"
+                              name="shot-size"
+                            />
+                            <label>Ground Level </label>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="list">
+                        <h3>Dutch Angle</h3>
+                        <ul>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              name="shot-size"
+                              id="Medium Shot"
+                            />
+                            <label>Dutch (left)</label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              id="Close Shot"
+                              name="shot-size"
+                            />
+                            <label>Dutch (right)</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="list">
+                        <h3>Framing</h3>
+                        <ul>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              name="shot-size"
+                              id="Medium Shot"
+                            />
+                            <label>Single Shot</label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              id="Close Shot"
+                              name="shot-size"
+                            />
+                            <label>Two Shot</label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              id="Medium Close Shot"
+                              name="shot-size"
+                            />
+                            <label>Three Shot</label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              id="Wide close-up"
+                              type="checkbox"
+                              name="shot-size"
+                            />
+                            <label>Over-the-Shoulder</label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              id="Wide close-up"
+                              type="checkbox"
+                              name="shot-size"
+                            />
+                            <label>Over-the-Hip</label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              id="Wide close-up"
+                              type="checkbox"
+                              name="shot-size"
+                            />
+                            <label>Point of View</label>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="list">
+                        <h3>Focus/dof</h3>
+                        <ul>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              name="shot-size"
+                              id="Wide Shot"
+                            />
+                            <label>Rack/Focus </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              id="Extreme Wide Shot"
+                              name="shot-size"
+                            />
+                            <label>Shallow Focus </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              id="Full Shot"
+                              name="shot-size"
+                            />
+                            <label>Deep Focus </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              id="Medium Full Shot"
+                              type="checkbox"
+                              name="shot-size"
+                            />
+                            <label>Tilt-Shift </label>
+                          </li>
+                          <li class="shot-type-input">
+                            <input
+                              type="checkbox"
+                              id="Long Shot"
+                              name="shot-size"
+                            />
+                            <label>Zoom</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </body>
   <script
