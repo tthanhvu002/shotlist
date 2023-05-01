@@ -93,6 +93,9 @@ const findShotTypeInp = () => {
         str += ` ${shotTypeInpList[i]} | `;
       }
       document.querySelector(".shot-type .popup-btn").innerHTML = str;
+    } 
+    if(shotTypeInpList.length == 0){
+        document.querySelector(".shot-type .popup-btn").innerHTML = '';
     }
   });
 };
