@@ -95,7 +95,7 @@ const findShotTypeInp = () => {
       document.querySelector(".shot-type .popup-btn").innerHTML = str;
     } 
     if(shotTypeInpList.length == 0){
-        document.querySelector(".shot-type .popup-btn").innerHTML = '';
+        document.querySelector(".shot-type .popup-btn").innerHTML = 'Shot type';
     }
   });
 };
