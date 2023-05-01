@@ -18,32 +18,54 @@ const shotSizeInpList = [];
 const shotSizeInp = document.querySelectorAll(".shot-size-input");
 Array.from(shotSizeInp).map((item) => {
   item.onclick = () => {
-    if(item.querySelector('input').checked){
-        shotTypeInpList.push(item.querySelector('label').innerHTML)
-        console.log('Shot size input list: '+ shotTypeInpList);
-        let str = ''
-        for(i = 0; i<shotTypeInpList.length;i++){
-            str =` ${shotTypeInpList[i]} `
-        }
-        document.querySelector('.shot-size .popup-btn').innerHTML = str;
+    if (item.querySelector("input").checked) {
+      shotTypeInpList.push(item.querySelector("label").innerHTML);
+      console.log("Shot size input list: " + shotTypeInpList);
+      let str = "";
+      for (i = 0; i < shotTypeInpList.length; i++) {
+        str = ` ${shotTypeInpList[i]} `;
+      }
+      document.querySelector(".shot-size .popup-btn").innerHTML = str;
     }
   };
 });
 
 /* shot type input */
-const shotTypeInpList = [];
+let shotTypeInpList = [];
 
 const shotTypeInp = document.querySelectorAll(".shot-type-input");
 Array.from(shotTypeInp).map((item) => {
   item.onclick = () => {
-    if(item.querySelector('input').checked){
-        shotTypeInpList.push(item.querySelector('label').innerHTML)
-        console.log('Shot type input list: '+ shotTypeInpList);
-        let str = ''
-        for(i = 0; i<shotTypeInpList.length;i++){
-            str +=` ${shotTypeInpList[i]} | `
-        }
-        document.querySelector('.shot-type .popup-btn').innerHTML = str;
+    item.classList.toggle("true");
+    if (item.classList.contains("true")) {
+      if (shotTypeInpList.includes(item.querySelector("label").innerHTML)) {
+      } else {
+        shotTypeInpList.push(item.querySelector("label").innerHTML);
+      }
+      console.log("Shot type input list: " + shotTypeInpList);
+      let str = "";
+      for (i = 0; i < shotTypeInpList.length; i++) {
+        str += ` ${shotTypeInpList[i]} | `;
+      }
+      document.querySelector(".shot-type .popup-btn").innerHTML = str;
+    } else {
+      findShotTypeInp();
     }
   };
 });
+
+const findShotTypeInp = () => {
+  shotTypeInpList = [];
+  Array.from(shotTypeInp).map((item) => {
+    if (item.classList.contains("true")) {
+      shotTypeInpList.push(item.querySelector("label").innerHTML);
+
+      console.log("Shot type input list: " + shotTypeInpList);
+      let str = "";
+      for (i = 0; i < shotTypeInpList.length; i++) {
+        str += ` ${shotTypeInpList[i]} | `;
+      }
+      document.querySelector(".shot-type .popup-btn").innerHTML = str;
+    }
+  });
+};
