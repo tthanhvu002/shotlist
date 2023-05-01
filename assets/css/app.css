@@ -77,6 +77,14 @@ span, p, h1, h2, h3, label {
 .table-row {
   display: flex;
 }
+.table #file-input {
+  opacity: 0;
+}
+.table img {
+  width: 100px;
+  height: 100px;
+  border-radius: 14px;
+}
 .table .col {
   padding: 0;
 }

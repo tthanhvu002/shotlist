@@ -12,6 +12,28 @@ popupBtns.forEach((item, i) => {
   };
 });
 
+/* upload image */
+
+const fileInput = document.getElementById('file-input');
+      const imageContainer = document.getElementById('image-container');
+
+      fileInput.addEventListener('change', function() {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener('load', function() {
+          const image = new Image();
+          image.src = reader.result;
+          imageContainer.innerHTML = '';
+         
+          imageContainer.appendChild(image);
+        });
+
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      });
+
 /* Shot size input */
 const shotSizeInpList = [];
 
