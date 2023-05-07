@@ -15,20 +15,74 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="container">
+      <div class="container-al">
+        <div class="actions-wrap">
+          <div class="new-btn">
+            <p>+</p>
+            <div class="rounded"></div>
+          </div>
+        </div>
         <div class="table">
           <div class="table-row">
             <div class="col image true">
-              <form>
-                <input type="file" id="file-input" accept="image/*" />
-                <label for="file-input"> Image </label>
-              </form>
-              <label for="file-input" id="image-container"></label>
+              <h2></h2>
+              <div class="content">
+                <form>
+                  <input type="file" id="file-input" accept="image/*" />
+                  <label for="file-input"> Image </label>
+                </form>
+                <label for="file-input" id="image-container"></label>
+              </div>
             </div>
             <div class="col scene true">
               <div class="row-al">
                 <h2>Scene</h2>
-                <input class="content" type="text" placeholder="abc" />
+                <input class="content" type="text" placeholder="Scene" />
+              </div>
+            </div>
+            <div class="col subject true">
+              <div class="row-al">
+                <h2>Subject</h2>
+                <input class="content" type="text" placeholder="Subject" />
+              </div>
+            </div>
+            <div class="col camera true">
+              <div class="row-al">
+                <h2>Camera</h2>
+                <input class="content" type="text" placeholder="Camera" />
+              </div>
+            </div>
+            <div class="col int true">
+              <h2>Int/Ext – Day/Night</h2>
+              <div class="content">
+                <div class="popup-btn">Int/Ext – Day/Night</div>
+                <div class="modal-al">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="list">
+                        <h3>Int/Ext – Day/Night</h3>
+                        <ul>
+                          <li class="int-input">
+                            <input type="radio" name="int" id="Int-Day" />
+                            <label for="Int-Day">Int-Day</label>
+                          </li>
+                          <li class="int-input">
+                            <input type="radio" id="Int-Night" name="int" />
+                            <label for="Int-Night">Int-Night</label>
+                          </li>
+                          <li class="int-input">
+                            <input type="radio" id="Ext-Day" name="int" />
+                            <label for="Ext-Day">Ext-Day</label>
+                          </li>
+                          <li class="int-input">
+                            <input id="Ext-Night" type="radio" name="int" />
+                            <label for="Ext-Night">Ext-Night</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col shot-size true">
@@ -382,6 +436,204 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="col camera-movement true">
+              <h2>Camera Movement</h2>
+              <div class="content">
+                <div class="popup-btn">Camera Movement</div>
+                <div class="modal-al">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="list">
+                        <h3>Camera Movement</h3>
+                        <ul>
+                          <li class="camera-movement-input">
+                            <input
+                              type="radio"
+                              name="camera-movement"
+                              id="Static"
+                            />
+                            <label for="Static">Static</label>
+                          </li>
+                          <li class="camera-movement-input">
+                            <input
+                              type="radio"
+                              id="Pan"
+                              name="camera-movement"
+                            />
+                            <label for="Pan">Pan</label>
+                          </li>
+                          <li class="camera-movement-input">
+                            <input
+                              type="radio"
+                              id="Tilt"
+                              name="camera-movement"
+                            />
+                            <label for="Tilt">Tilt</label>
+                          </li>
+                          <li class="camera-movement-input">
+                            <input
+                              id="Swish Pan"
+                              type="radio"
+                              name="camera-movement"
+                            />
+                            <label for="Swish Pan">Swish Pan</label>
+                          </li>
+                          <li class="camera-movement-input">
+                            <input
+                              type="radio"
+                              id="Swish Tilt"
+                              name="camera-movement"
+                            />
+                            <label for="Swish Tilt">Swish Tilt</label>
+                          </li>
+                          <li class="camera-movement-input">
+                            <input
+                              id="Tracking"
+                              type="radio"
+                              name="camera-movement"
+                            />
+                            <label for="Tracking">Tracking</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col equipment true">
+              <h2>Equipment</h2>
+              <div class="content">
+                <div class="popup-btn">Equipment</div>
+                <div class="modal-al">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="list">
+                        <h3>Mechanism</h3>
+                        <ul>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Close-up" />
+                            <label> Stick </label>
+                          </li>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Medium close-up" />
+                            <label>Hand Held </label>
+                          </li>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Extreme close-up" />
+                            <label>Gimbal</label>
+                          </li>
+                          <li class="equipment-input">
+                            <input id="Wide close-up" type="checkbox" />
+                            <label>Slider </label>
+                          </li>
+                          <li class="equipment-input">
+                            <input id="Wide close-up" type="checkbox" />
+                            <label> Jib </label>
+                          </li>
+                          <li class="equipment-input">
+                            <input id="Wide close-up" type="checkbox" />
+                            <label> Drone </label>
+                          </li>
+                          <li class="equipment-input">
+                            <input id="Wide close-up" type="checkbox" />
+                            <label> Dolly </label>
+                          </li>
+                          <li class="equipment-input">
+                            <input id="Wide close-up" type="checkbox" />
+                            <label>Steadicam </label>
+                          </li>
+                          <li class="equipment-input">
+                            <input id="Wide close-up" type="checkbox" />
+                            <label>Crane</label>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="list">
+                        <h3>Direction</h3>
+                        <ul>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Medium Shot" />
+                            <label>Forward</label>
+                          </li>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Close Shot" />
+                            <label>Backward</label>
+                          </li>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Medium Shot" />
+                            <label>Left</label>
+                          </li>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Close Shot" />
+                            <label>Right</label>
+                          </li>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Medium Shot" />
+                            <label>Up</label>
+                          </li>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Close Shot" />
+                            <label>Down</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="list">
+                        <h3>Tracks</h3>
+                        <ul>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Medium Shot" />
+                            <label>Straights</label>
+                          </li>
+                          <li class="equipment-input">
+                            <input type="checkbox" id="Close Shot" />
+                            <label>Circular</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col lens true">
+              <div class="row-al">
+                <h2>lens</h2>
+                <input class="content" type="text" placeholder="lens" />
+              </div>
+            </div>
+            <div class="col description true">
+              <div class="row-al">
+                <h2>Description of shot</h2>
+                <input class="content" type="text" placeholder="Description" />
+              </div>
+            </div>
+            <div class="col note true">
+              <div class="row-al">
+                <h2>note</h2>
+                <input class="content" type="text" placeholder="note" />
+              </div>
+            </div>
+            <div class="col est true">
+              <div class="row-al">
+                <h2>EST Of Takes</h2>
+                <input class="content" type="text" placeholder="EST of takes" />
+              </div>
+            </div>
+            <div class="col shoot-time true">
+              <div class="row-al">
+                <h2>Shoot time</h2>
+                <input class="content" type="text" placeholder="Shoot time" />
+              </div>
+            </div>
+            <div class="col status true">
+              <div class="row-al">
+                <h2></h2>
+                <input class="content" type="checkbox" placeholder />
               </div>
             </div>
           </div>
