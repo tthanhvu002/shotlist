@@ -56,6 +56,10 @@ input[type=checkbox] {
   display: none;
 }
 
+.description .content {
+  min-width: 150px;
+}
+
 html {
   font-family: "Montserrat", sans-serif;
 }
