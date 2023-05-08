@@ -731,12 +731,12 @@ findPopups();
 const inputRow = () => {
   /* upload image */
   const fileInputs = document.querySelectorAll("#file-input");
+  console.log(fileInputs);
   const imageContainer = document.querySelectorAll("#image-container");
   const imageLabel = document.querySelectorAll(".image form label");
   fileInputs.forEach((fileInput, i) => {
     console.log(fileInput);
     fileInput.addEventListener("change", function (e) {
-      fileInputs[0].remove();
 
       const file = fileInput.files[0];
       const reader = new FileReader();
@@ -750,7 +750,6 @@ const inputRow = () => {
       });
 
       if (file) {
-        imageLabel[i].classList.toggle("active");
         reader.readAsDataURL(file);
       }
     });

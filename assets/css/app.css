@@ -47,8 +47,13 @@ input[type=checkbox] {
 }
 
 .popup-btn {
+  overflow: scroll;
+  max-height: 100px;
   cursor: pointer;
   user-select: none;
+}
+.popup-btn::-webkit-scrollbar {
+  display: none;
 }
 
 html {
