@@ -6,12 +6,12 @@ html {
 .wrapper {
   position: relative;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
   font-weight: 400;
   background-color: #fafafa;
 }
 .container-al{
-  padding: 1% 5%;
+  padding: 1% 1%;
 }
 ul {
   list-style: none;
@@ -45,7 +45,6 @@ label {
   align-items: center;
   transition: 0.2s ease-in-out;
   &:hover{
-    transform: rotate(90deg);
 
     .rounded{
       width: 60px;
@@ -71,16 +70,10 @@ label {
     display: flex;
   }
   #file-input {
-    opacity: 0;
   }
   .image {
     form {
-      label {
-        cursor: pointer;
-        &.active {
-          visibility: hidden;
-        }
-      }
+     
     }
   }
   img {
@@ -101,8 +94,24 @@ label {
     .image-container {
     }
     h2 {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      img{
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        opacity: 0;
+        transition: 0.2s ease;
+        cursor: pointer;
+      }
+      &:hover{
+        img{
+          opacity: 1;
+        }
+      }
       padding: 8px;
-      min-height: 90px;
+      min-height: 120px;
       text-transform: capitalize;
       display: flex;
       justify-content: center;

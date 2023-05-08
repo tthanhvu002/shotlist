@@ -1,12 +1,12 @@
 const sceneRow = `<input class="content" type="text" placeholder="abc" />`;
-const subjectRow = `<input class="content" type="text" placeholder="Subject" />`
+const subjectRow = `<input class="content" type="text" placeholder="Subject" />`;
 
-const lensRow = `<input class="content" type="text" placeholder="lens" />`
-const desRow = `<input class="content" type="text" placeholder="Description" />`
-const noteRow = `  <input class="content" type="text" placeholder="note" />`
-const estRow = ` <input class="content" type="text" placeholder="EST of takes" />`
-const shootTimeRow = `<input class="content" type="text" placeholder="Shoot time" />`
-const statusRow = `<input class="content" type="checkbox" placeholder />`
+const lensRow = `<input class="content" type="text" placeholder="lens" />`;
+const desRow = `<input class="content" type="text" placeholder="Description" />`;
+const noteRow = `  <input class="content" type="text" placeholder="note" />`;
+const estRow = ` <input class="content" type="text" placeholder="EST of takes" />`;
+const shootTimeRow = `<input class="content" type="text" placeholder="Shoot time" />`;
+const statusRow = `<input class="content" type="checkbox" placeholder />`;
 const cameraRow = `<input class="content" type="text" placeholder="camera" />`;
 const shotSizeRow = `
 <div class="content">
@@ -358,11 +358,12 @@ const shotTypeRow = `
                 </div>
               </div>`;
 
-const imageRow = ` <form>
-<input type="file" id="file-input" accept="image/*" />
-<label for="file-input"> Image </label>
+const imageRow = ` <div class="content">
+<form>
+  <input type="file" id="file-input" accept="image/*" />
 </form>
-<label for="file-input" id="image-container"></label>`;
+<label for="file-input" id="image-container"></label>
+</div>  `;
 const intRow = ` <div class="content">
 <div class="popup-btn">Int/Ext – Day/Night </div>
 <div class="modal-al">
@@ -649,10 +650,12 @@ const equipmentRow = ` <div class="content">
   </div>
 </div>
 </div>`;
-/* add new row */
-const rows = document.querySelectorAll(".col.true");
+/* add row */
+
 const newBtn = document.querySelector(".new-btn");
 newBtn.onclick = () => {
+  const rows = document.querySelectorAll(".col.true");
+
   Array.from(rows).map((item) => {
     if (item.classList.contains("scene")) {
       document.querySelector(".scene").innerHTML += sceneRow;
@@ -714,39 +717,43 @@ const findPopups = () => {
     };
   });
 };
-function getParent(element, selector){
-
-  while(element.parentElement){
-      if(element.parentElement.matches(selector)){
-          return element.parentElement;
-      } else{
-          element = element.parentElement;
-      }
+function getParent(element, selector) {
+  while (element.parentElement) {
+    if (element.parentElement.matches(selector)) {
+      return element.parentElement;
+    } else {
+      element = element.parentElement;
+    }
   }
 }
 
 findPopups();
 const inputRow = () => {
   /* upload image */
-  const fileInput = document.getElementById("file-input");
-  const imageContainer = document.getElementById("image-container");
-  const imageLabel = document.querySelector(".image form label");
-  fileInput.addEventListener("change", function () {
-    const file = fileInput.files[0];
-    const reader = new FileReader();
+  const fileInputs = document.querySelectorAll("#file-input");
+  const imageContainer = document.querySelectorAll("#image-container");
+  const imageLabel = document.querySelectorAll(".image form label");
+  fileInputs.forEach((fileInput, i) => {
+    console.log(fileInput);
+    fileInput.addEventListener("change", function (e) {
+      fileInputs[0].remove();
 
-    reader.addEventListener("load", function () {
-      const image = new Image();
-      image.src = reader.result;
-      imageContainer.innerHTML = "";
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+      console.log(e.target);
+      reader.addEventListener("load", function () {
+        const image = new Image();
+        image.src = reader.result;
+        imageContainer[i].innerHTML = "";
 
-      imageContainer.appendChild(image);
+        imageContainer[i].appendChild(image);
+      });
+
+      if (file) {
+        imageLabel[i].classList.toggle("active");
+        reader.readAsDataURL(file);
+      }
     });
-
-    if (file) {
-      imageLabel.classList.toggle("active");
-      reader.readAsDataURL(file);
-    }
   });
 
   /* Shot size input */
@@ -755,7 +762,7 @@ const inputRow = () => {
     item.onclick = (e) => {
       if (item.querySelector("input").checked) {
         let str = item.querySelector("label").innerHTML;
-        const row = getParent(e.target, '.content')
+        const row = getParent(e.target, ".content");
         row.querySelector(".shot-size .popup-btn").innerHTML = str;
       }
     };
@@ -768,7 +775,7 @@ const inputRow = () => {
     item.onclick = (e) => {
       if (item.querySelector("input").checked) {
         let str = item.querySelector("label").innerHTML;
-        const row = getParent(e.target, '.content')
+        const row = getParent(e.target, ".content");
         row.querySelector(".int .popup-btn").innerHTML = str;
       }
     };
@@ -792,7 +799,7 @@ const inputRow = () => {
         for (i = 0; i < shotTypeInpList.length; i++) {
           str += ` ${shotTypeInpList[i]} | `;
         }
-        const row = getParent(e.target, '.content')
+        const row = getParent(e.target, ".content");
         row.querySelector(".shot-type .popup-btn").innerHTML = str;
       } else {
         item.querySelector("input").checked = false;
@@ -804,17 +811,16 @@ const inputRow = () => {
 
   const findShotTypeInp = (e) => {
     shotTypeInpList = [];
-    const row = getParent(e.target, '.content')
+    const row = getParent(e.target, ".content");
     Array.from(shotTypeInp).map((item) => {
       if (item.classList.contains("true")) {
         shotTypeInpList.push(item.querySelector("label").innerHTML);
 
-        
         let str = "";
         for (i = 0; i < shotTypeInpList.length; i++) {
           str += ` ${shotTypeInpList[i]} | `;
         }
-        
+
         row.querySelector(".shot-type .popup-btn").innerHTML = str;
       }
       if (shotTypeInpList.length == 0) {
@@ -823,7 +829,7 @@ const inputRow = () => {
     });
   };
 
-  /* shot type input */
+  /* equipment input */
   let equipmentInpList = [];
 
   const equipmentInp = document.querySelectorAll(".equipment-input");
@@ -840,7 +846,7 @@ const inputRow = () => {
         for (i = 0; i < equipmentInpList.length; i++) {
           str += ` ${equipmentInpList[i]} | `;
         }
-        const row = getParent(e.target, '.content')
+        const row = getParent(e.target, ".content");
         row.querySelector(".equipment .popup-btn").innerHTML = str;
       } else {
         item.querySelector("input").checked = false;
@@ -852,7 +858,7 @@ const inputRow = () => {
 
   const findEquipmentInp = (e) => {
     equipmentInpList = [];
-    const row = getParent(e.target, '.content')
+    const row = getParent(e.target, ".content");
     Array.from(equipmentInp).map((item) => {
       if (item.classList.contains("true")) {
         equipmentInpList.push(item.querySelector("label").innerHTML);
@@ -868,5 +874,31 @@ const inputRow = () => {
       }
     });
   };
+
+  /* camera movement input */
+  const cameraMovementInp = document.querySelectorAll(".camera-movement-input");
+  Array.from(cameraMovementInp).map((item) => {
+    item.onclick = (e) => {
+      if (item.querySelector("input").checked) {
+        let str = item.querySelector("label").innerHTML;
+        const row = getParent(e.target, ".content");
+        row.querySelector(".camera-movement .popup-btn").innerHTML = str;
+      }
+    };
+  });
 };
 inputRow();
+
+/* delete column */
+
+const delBtns = document.querySelectorAll(".del-col-btn");
+
+Array.from(delBtns).map((item, i) => {
+  item.onclick = (e) => {
+    delCol(e);
+  };
+});
+const delCol = (e) => {
+  const row = getParent(e.target, ".col");
+  row.remove();
+};
