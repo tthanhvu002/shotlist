@@ -6,7 +6,7 @@ html {
 .wrapper {
   position: relative;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: scroll;
   font-weight: 400;
   background-color: #fafafa;
 }
@@ -77,8 +77,9 @@ label {
     }
   }
   img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
     border-radius: 14px;
   }
   .col.true {
@@ -123,7 +124,7 @@ label {
   .content {
     border-top: 1.5px solid #f0eeee;
     padding: 10px;
-    min-height: 100px;
+    min-height: 150px;
     position: relative;
     text-align: center;
     display: flex;

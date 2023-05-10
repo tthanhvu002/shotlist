@@ -416,70 +416,145 @@ const intRow = ` <div class="content">
   </div>
 </div>
 </div>`;
-const cameraMovementRow = `<div class="content">
+const cameraMovementRow = ` <div class="content">
 <div class="popup-btn">Camera Movement</div>
 <div class="modal-al">
   <div class="row">
-   
     <div class="col-12">
       <div class="list">
         <h3>Camera Movement</h3>
-        <ul>
-          <li class="camera-movement-input">
-            <input
-              type="radio"
-              name="camera-movement"
-              id="Static"
-            />
-            <label for="Static">Static</label>
-          </li>
-          <li class="camera-movement-input">
-            <input
-              type="radio"
-              id="Pan"
-              name="camera-movement"
-            />
-            <label for="Pan"
-              >Pan</label
-            >
-          </li>
-          <li class="camera-movement-input">
-            <input
-              type="radio"
-              id="Tilt"
-              name="camera-movement"
-            />
-            <label for="Tilt">Tilt</label>
-          </li>
-          <li class="camera-movement-input">
-            <input
-              id="Swish Pan"
-              type="radio"
-              name="camera-movement"
-            />
-            <label for="Swish Pan"
-              >Swish Pan</label
-            >
-          </li>
-          <li class="camera-movement-input">
-            <input
-              type="radio"
-              id="Swish Tilt"
-              name="camera-movement"
-            />
-            <label for="Swish Tilt">Swish Tilt</label>
-          </li>
-          <li class="camera-movement-input">
-            <input
-              id="Tracking"
-              type="radio"
-              name="camera-movement"
-            />
-            <label for="Tracking"
-              >Tracking</label
-            >
-          </li>
-        </ul>
+        <div class="row">
+          <div class="col-6">
+            <ul>
+              <li class="camera-movement-input">
+                <input
+                  id="Dolly Zoom"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Dolly Zoom">Dolly Zoom</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  id="Push In"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Push In">Push In</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  id="Pull Out"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Pull Out">Pull Out</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  id="Roll"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Roll">Roll</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  id="Arc"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Arc">Arc</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  id="Boom"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Boom">Boom</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  id="Random"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Random">Random</label>
+              </li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <ul>
+              <li class="camera-movement-input">
+                <input
+                  type="checkbox"
+                  name="camera-movement"
+                  id="Static"
+                />
+                <label for="Static">Static</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  type="checkbox"
+                  id="Pan"
+                  name="camera-movement"
+                />
+                <label for="Pan">Pan</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  type="checkbox"
+                  id="Tilt"
+                  name="camera-movement"
+                />
+                <label for="Tilt">Tilt</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  id="Swish Pan"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Swish Pan">Swish Pan</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  type="checkbox"
+                  id="Swish Tilt"
+                  name="camera-movement"
+                />
+                <label for="Swish Tilt">Swish Tilt</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  id="Tracking"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Tracking">Tracking</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  id="Zoom"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Zoom">Zoom</label>
+              </li>
+              <li class="camera-movement-input">
+                <input
+                  id="Crash Zoom"
+                  type="checkbox"
+                  name="camera-movement"
+                />
+                <label for="Crash Zoom">Crash Zoom</label>
+              </li>
+              
+            </ul>
+           </div>
+        </div>
+      
       </div>
     </div>
   </div>
@@ -737,10 +812,8 @@ const inputRow = () => {
   fileInputs.forEach((fileInput, i) => {
     console.log(fileInput);
     fileInput.addEventListener("change", function (e) {
-
       const file = fileInput.files[0];
       const reader = new FileReader();
-      console.log(e.target);
       reader.addEventListener("load", function () {
         const image = new Image();
         image.src = reader.result;
@@ -875,16 +948,52 @@ const inputRow = () => {
   };
 
   /* camera movement input */
+
+  let cameraMovementList = [];
+
   const cameraMovementInp = document.querySelectorAll(".camera-movement-input");
   Array.from(cameraMovementInp).map((item) => {
     item.onclick = (e) => {
-      if (item.querySelector("input").checked) {
-        let str = item.querySelector("label").innerHTML;
+      item.classList.toggle("true");
+      if (item.classList.contains("true")) {
+        item.querySelector("input").checked = true;
+        if (cameraMovementList.includes(item.querySelector("label").innerHTML)) {
+        } else {
+          cameraMovementList.push(item.querySelector("label").innerHTML);
+        }
+        let str = "";
+        for (i = 0; i < cameraMovementList.length; i++) {
+          str += ` ${cameraMovementList[i]} | `;
+        }
         const row = getParent(e.target, ".content");
         row.querySelector(".camera-movement .popup-btn").innerHTML = str;
+      } else {
+        item.querySelector("input").checked = false;
+
+        findCameraMovementInp(e);
       }
     };
   });
+
+  const findCameraMovementInp = (e) => {
+    cameraMovementList = [];
+    const row = getParent(e.target, ".content");
+    Array.from(cameraMovementInp).map((item) => {
+      if (item.classList.contains("true")) {
+        cameraMovementList.push(item.querySelector("label").innerHTML);
+
+        let str = "";
+        for (i = 0; i < cameraMovementList.length; i++) {
+          str += ` ${cameraMovementList[i]} | `;
+        }
+        row.querySelector(".camera-movement .popup-btn").innerHTML = str;
+      }
+      if (cameraMovementList.length == 0) {
+        row.querySelector(".camera-movement .popup-btn").innerHTML = "Camera movement";
+      }
+    });
+  };
+
 };
 inputRow();
 
@@ -901,3 +1010,11 @@ const delCol = (e) => {
   const row = getParent(e.target, ".col");
   row.remove();
 };
+
+/* can bang dong */
+const contents = document.querySelectorAll(".content");
+Array.from(contents).map((item) => {
+  item.onclick = () => {
+    console.log(1);
+  };
+});
