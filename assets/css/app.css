@@ -59,6 +59,9 @@ input[type=checkbox] {
 .description .content, .note .content {
   min-width: 150px;
 }
+.shoot-time .content, .script-time .content {
+  min-width: 110px;
+}
 
 html {
   font-family: "Montserrat", sans-serif;
@@ -92,13 +95,54 @@ label {
 
 .actions-wrap {
   position: relative;
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+.actions-wrap .board {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 99;
+  width: 200px;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  padding: 20px;
+  padding-left: 15px;
+  visibility: hidden;
+  border-radius: 12px;
+  transition: 0.2s ease;
+  opacity: 0;
+  top: -200px;
+}
+.actions-wrap .board.active {
+  top: 60px;
+  right: 0;
+  opacity: 1;
+  visibility: visible;
+}
+.actions-wrap .board .item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.board-btn {
+  cursor: pointer;
+  transition: 0.2s ease-out;
+  rotate: 0deg;
+}
+.board-btn:hover {
+  rotate: 100deg;
 }
 
 .new-btn {
   background-color: #B0DAFF;
   border-radius: 100%;
-  font-size: 15px;
-  margin-left: auto;
+  font-size: 12px;
   font-weight: 700;
   padding: 10px;
   width: 45px;
@@ -111,12 +155,21 @@ label {
   align-items: center;
   transition: 0.2s ease-in-out;
 }
+.new-btn i {
+  rotate: 0deg;
+  transition: 0.2s ease-in-out;
+}
+.new-btn:hover i {
+  rotate: 90deg;
+}
 .new-btn:hover .rounded {
   width: 60px;
+  rotate: 180deg;
   height: 60px;
   opacity: 1;
 }
 .new-btn .rounded {
+  rotate: 0deg;
   border-radius: 100% !important;
   position: absolute;
   width: 10px;
@@ -145,7 +198,6 @@ label {
 }
 .table .col {
   visibility: hidden;
-  width: 0;
   display: none;
   padding: 0;
 }
@@ -182,8 +234,12 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 90px;
 }
-.table input {
+.table textarea {
+  height: 100px;
+}
+.table input, .table textarea {
   text-align: center;
   width: 100%;
   background-color: transparent;

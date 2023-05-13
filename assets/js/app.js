@@ -1,12 +1,18 @@
-const sceneRow = `<input class="content" type="text" placeholder="abc" />`;
+const sceneRow = `<input class="content" type="text" placeholder="Scene" />`;
 const subjectRow = `<input class="content" type="text" placeholder="Subject" />`;
 
 const lensRow = `<input class="content" type="text" placeholder="lens" />`;
-const desRow = `<input class="content" type="text" placeholder="Description" />`;
-const noteRow = `  <input class="content" type="text" placeholder="note" />`;
+const desRow = `<div class="content">
+<textarea name="" placeholder="Description" id="" ></textarea>
+</div>`;
+const noteRow = ` <div class="content">
+<textarea name="" placeholder="Note" id="" ></textarea>
+</div>`;
 const estRow = ` <input class="content" type="text" placeholder="EST of takes" />`;
 const shootTimeRow = `<input class="content" type="text" placeholder="Shoot time" />`;
-const statusRow = `<input class="content" type="checkbox" placeholder />`;
+const statusRow = `<div class="content">
+<input type="checkbox" placeholder />
+</div>`;
 const cameraRow = `<input class="content" type="text" placeholder="camera" />`;
 const shotSizeRow = `
 <div class="content">
@@ -725,13 +731,45 @@ const equipmentRow = ` <div class="content">
   </div>
 </div>
 </div>`;
-/* add row */
+const scriptTimeRow = ` <div class="content">
+<input  type="text" placeholder="Script time" />
+</div>`
+const setupRow = `<div class="content">
+<input  type="text" placeholder="Setup" />
 
+</div>
+`
+const shotRow = `<div class="content">
+<input  type="text" placeholder="Shot" />
+
+</div>`
+const lyricsRow = `<div class="content">
+<input type="text" placeholder="Lyrics"  />
+</div>`
+const soundRow = `<div class="content">
+<input type="text" placeholder="Sound"  />
+</div>`
+/* add row */
 const newBtn = document.querySelector(".new-btn");
 newBtn.onclick = () => {
   const rows = document.querySelectorAll(".col.true");
 
   Array.from(rows).map((item) => {
+    if (item.classList.contains("setup")) {
+      document.querySelector(".setup.col").innerHTML += setupRow;
+    }
+    if (item.classList.contains("shot")) {
+      document.querySelector(".shot.col").innerHTML += shotRow;
+    }
+    if (item.classList.contains("script-time")) {
+      document.querySelector(".script-time.col").innerHTML += scriptTimeRow;
+    }
+    if (item.classList.contains("lyrics")) {
+      document.querySelector(".lyrics.col").innerHTML += lyricsRow;
+    }
+    if (item.classList.contains("sound")) {
+      document.querySelector(".sound.col").innerHTML += soundRow;
+    }
     if (item.classList.contains("scene")) {
       document.querySelector(".scene").innerHTML += sceneRow;
     }
@@ -806,11 +844,9 @@ findPopups();
 const inputRow = () => {
   /* upload image */
   const fileInputs = document.querySelectorAll("#file-input");
-  console.log(fileInputs);
   const imageContainer = document.querySelectorAll("#image-container");
   const imageLabel = document.querySelectorAll(".image form label");
   fileInputs.forEach((fileInput, i) => {
-    console.log(fileInput);
     fileInput.addEventListener("change", function (e) {
       const file = fileInput.files[0];
       const reader = new FileReader();
@@ -852,7 +888,7 @@ const inputRow = () => {
       }
     };
   });
-
+  console.log(1);
   /* shot type input */
   let shotTypeInpList = [];
 
@@ -866,7 +902,7 @@ const inputRow = () => {
         } else {
           shotTypeInpList.push(item.querySelector("label").innerHTML);
         }
-        console.log("Shot type input list: " + shotTypeInpList);
+
         let str = "";
         for (i = 0; i < shotTypeInpList.length; i++) {
           str += ` ${shotTypeInpList[i]} | `;
@@ -957,7 +993,9 @@ const inputRow = () => {
       item.classList.toggle("true");
       if (item.classList.contains("true")) {
         item.querySelector("input").checked = true;
-        if (cameraMovementList.includes(item.querySelector("label").innerHTML)) {
+        if (
+          cameraMovementList.includes(item.querySelector("label").innerHTML)
+        ) {
         } else {
           cameraMovementList.push(item.querySelector("label").innerHTML);
         }
@@ -989,11 +1027,20 @@ const inputRow = () => {
         row.querySelector(".camera-movement .popup-btn").innerHTML = str;
       }
       if (cameraMovementList.length == 0) {
-        row.querySelector(".camera-movement .popup-btn").innerHTML = "Camera movement";
+        row.querySelector(".camera-movement .popup-btn").innerHTML =
+          "Camera movement";
       }
     });
   };
+  /* scene */
 
+  const sceneInp = document.querySelectorAll(".scene input");
+  const sceneInpList = []
+  sceneInp.forEach((item,i) => {
+    item.oninput = (e) => {
+     
+    }
+  });
 };
 inputRow();
 
@@ -1011,10 +1058,28 @@ const delCol = (e) => {
   row.remove();
 };
 
-/* can bang dong */
-const contents = document.querySelectorAll(".content");
-Array.from(contents).map((item) => {
+/* add col */
+
+const boardBtn = document.querySelector(".board-btn");
+const board = document.querySelector(".board");
+boardBtn.onclick = () => {
+  board.classList.toggle("active");
+};
+
+const items = document.querySelectorAll(".board .item");
+Array.from(items).map((item) => {
   item.onclick = () => {
-    console.log(1);
+    if (item.querySelector("input").classList.contains("lyrics")) {
+      document.querySelector(".lyrics.col").classList.toggle("true");
+    }
+    if (item.querySelector("input").classList.contains("setup")) {
+      document.querySelector(".setup.col").classList.toggle("true");
+    }
+    if (item.querySelector("input").classList.contains("sound")) {
+      document.querySelector(".sound.col").classList.toggle("true");
+    }
+    if (item.querySelector("input").classList.contains("shot")) {
+      document.querySelector(".shot.col").classList.toggle("true");
+    }
   };
 });

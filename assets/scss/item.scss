@@ -59,5 +59,13 @@ input[type="checkbox"] {
 .description,.note{
   .content{
     min-width: 150px;
+    input{
+      
+    }
+  }
+}
+.shoot-time, .script-time{
+  .content{
+    min-width: 110px;
   }
 }

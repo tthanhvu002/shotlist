@@ -27,12 +27,52 @@ label {
 }
 .actions-wrap{
   position: relative;
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  .board{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 99;
+    width: 200px;
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    padding: 20px;
+    padding-left: 15px;
+    visibility: hidden;
+    border-radius: 12px;
+    transition: 0.2s ease;
+    opacity: 0;
+    top: -200px;
+    &.active{
+      top: 60px;
+      right: 0;
+      opacity: 1;
+      visibility: visible;
+    }
+    .item{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}
+.board-btn{
+  cursor: pointer;
+  transition: 0.2s ease-out;
+  rotate: 0deg;
+  &:hover{
+    rotate: 100deg;
+  }
 }
 .new-btn {
   background-color: #B0DAFF;
   border-radius: 100%;
-  font-size: 15px;
-  margin-left: auto;
+  font-size: 12px;
   font-weight: 700;
   padding: 10px;
   width: 45px;
@@ -44,15 +84,24 @@ label {
   justify-content: center;
   align-items: center;
   transition: 0.2s ease-in-out;
+  i{
+    rotate: 0deg;
+    transition: 0.2s ease-in-out;
+  }
   &:hover{
-
+    i{
+      rotate: 90deg;
+    }
     .rounded{
       width: 60px;
+      rotate: 180deg;
       height: 60px;
       opacity: 1;
     }
   }
   .rounded{
+    rotate: 0deg;
+
     border-radius: 100% !important;
     position: absolute;
     width: 10px;
@@ -89,7 +138,6 @@ label {
   }
   .col {
     visibility: hidden;
-    width: 0;
     display: none;
     padding: 0;
     .image-container {
@@ -130,11 +178,15 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
-   
+   min-width: 90px;
   }
+  
   .row-al {
   }
-  input {
+  textarea{
+    height: 100px;
+  }
+  input,textarea {
     text-align: center;
     width: 100%;
     background-color: transparent;
