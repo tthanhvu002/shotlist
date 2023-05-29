@@ -1,19 +1,62 @@
-const sceneRow = `<input class="content" type="text" placeholder="Scene" />`;
-const subjectRow = `<input class="content" type="text" placeholder="Subject" />`;
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
+import {
+  doc,
+  setDoc,
+} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
 
-const lensRow = `<input class="content" type="text" placeholder="lens" />`;
+import {
+  collection,
+  addDoc,
+} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
+
+import { runTransaction } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
+import {
+  getDatabase,
+  ref,
+  set,
+  onValue,
+} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyB7XyOLNmKHz7i5OCp76JBHYEFMjNDByVg",
+  authDomain: "shotlist-10855.firebaseapp.com",
+  projectId: "shotlist-10855",
+  storageBucket: "shotlist-10855.appspot.com",
+  messagingSenderId: "961267694086",
+  appId: "1:961267694086:web:b8731035eb353b696ba187",
+  measurementId: "G-KQD7E23TT5",
+};
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+const sceneRow = `<div class="content">
+<input  type="text" placeholder="Scene" />
+</div>`;
+const subjectRow = `<div class="content">
+<input type="text" placeholder="Subject" />
+</div>`;
+
+const lensRow = `<div class="content">
+<input type="text" placeholder="lens" />
+</div>`;
 const desRow = `<div class="content">
 <textarea name="" placeholder="Description" id="" ></textarea>
 </div>`;
 const noteRow = ` <div class="content">
 <textarea name="" placeholder="Note" id="" ></textarea>
 </div>`;
-const estRow = ` <input class="content" type="text" placeholder="EST of takes" />`;
-const shootTimeRow = `<input class="content" type="text" placeholder="Shoot time" />`;
+const estRow = `  <div class="content">
+<input type="text" placeholder="EST of takes" />
+</div>`;
+const shootTimeRow = `<div class="content">
+<input type="text" placeholder="Shoot time" />
+</div>`;
 const statusRow = `<div class="content">
 <input type="checkbox" placeholder />
 </div>`;
-const cameraRow = `<input class="content" type="text" placeholder="camera" />`;
+const cameraRow = ` <div class="content">
+<input type="text" placeholder="Camera" />
+</div>`;
 const shotSizeRow = `
 <div class="content">
 <div class="popup-btn">Shot size</div>
@@ -368,8 +411,10 @@ const imageRow = ` <div class="content">
 <form>
   <input type="file" id="file-input" accept="image/*" />
 </form>
-<label for="file-input" id="image-container"></label>
-</div>  `;
+<label  id="image-container">
+  <img src="" alt="">
+</label>
+</div>`;
 const intRow = ` <div class="content">
 <div class="popup-btn">Int/Ext – Day/Night </div>
 <div class="modal-al">
@@ -733,26 +778,34 @@ const equipmentRow = ` <div class="content">
 </div>`;
 const scriptTimeRow = ` <div class="content">
 <input  type="text" placeholder="Script time" />
-</div>`
+</div>`;
 const setupRow = `<div class="content">
 <input  type="text" placeholder="Setup" />
 
 </div>
-`
+`;
 const shotRow = `<div class="content">
 <input  type="text" placeholder="Shot" />
 
-</div>`
+</div>`;
 const lyricsRow = `<div class="content">
 <input type="text" placeholder="Lyrics"  />
-</div>`
+</div>`;
 const soundRow = `<div class="content">
 <input type="text" placeholder="Sound"  />
-</div>`
+</div>`;
 /* add row */
 const newBtn = document.querySelector(".new-btn");
 newBtn.onclick = () => {
-  const rows = document.querySelectorAll(".col.true");
+  addRow();
+
+  findPopups();
+  inputRow();
+  readDbWhenAddRow();
+};
+
+const addRow = () => {
+  const rows = document.querySelectorAll(".col");
 
   Array.from(rows).map((item) => {
     if (item.classList.contains("setup")) {
@@ -816,9 +869,6 @@ newBtn.onclick = () => {
       document.querySelector(".status").innerHTML += statusRow;
     }
   });
-
-  findPopups();
-  inputRow();
 };
 
 const findPopups = () => {
@@ -830,38 +880,31 @@ const findPopups = () => {
     };
   });
 };
-function getParent(element, selector) {
-  while (element.parentElement) {
-    if (element.parentElement.matches(selector)) {
-      return element.parentElement;
-    } else {
-      element = element.parentElement;
-    }
-  }
-}
 
 findPopups();
 const inputRow = () => {
   /* upload image */
   const fileInputs = document.querySelectorAll("#file-input");
   const imageContainer = document.querySelectorAll("#image-container");
-  const imageLabel = document.querySelectorAll(".image form label");
-  fileInputs.forEach((fileInput, i) => {
-    fileInput.addEventListener("change", function (e) {
-      const file = fileInput.files[0];
+  const imageLabel = document.querySelectorAll(".image label");
+  imageLabel.forEach((item, index) => {
+    item.onclick = () => {
+      fileInputs[index].click();
       const reader = new FileReader();
+      const file = fileInputs[index].files[0];
+      const image = document.querySelectorAll(".image img")[index];
       reader.addEventListener("load", function () {
-        const image = new Image();
         image.src = reader.result;
-        imageContainer[i].innerHTML = "";
-
         imageContainer[i].appendChild(image);
-      });
 
-      if (file) {
-        reader.readAsDataURL(file);
-      }
-    });
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      });
+    };
+  });
+  fileInputs.forEach((fileInput, i) => {
+    fileInput.addEventListener("change", function (e) {});
   });
 
   /* Shot size input */
@@ -888,7 +931,6 @@ const inputRow = () => {
       }
     };
   });
-  console.log(1);
   /* shot type input */
   let shotTypeInpList = [];
 
@@ -904,7 +946,7 @@ const inputRow = () => {
         }
 
         let str = "";
-        for (i = 0; i < shotTypeInpList.length; i++) {
+        for (let i = 0; i < shotTypeInpList.length; i++) {
           str += ` ${shotTypeInpList[i]} | `;
         }
         const row = getParent(e.target, ".content");
@@ -951,7 +993,7 @@ const inputRow = () => {
           equipmentInpList.push(item.querySelector("label").innerHTML);
         }
         let str = "";
-        for (i = 0; i < equipmentInpList.length; i++) {
+        for (let i = 0; i < equipmentInpList.length; i++) {
           str += ` ${equipmentInpList[i]} | `;
         }
         const row = getParent(e.target, ".content");
@@ -972,7 +1014,7 @@ const inputRow = () => {
         equipmentInpList.push(item.querySelector("label").innerHTML);
 
         let str = "";
-        for (i = 0; i < equipmentInpList.length; i++) {
+        for (let i = 0; i < equipmentInpList.length; i++) {
           str += ` ${equipmentInpList[i]} | `;
         }
         row.querySelector(".equipment .popup-btn").innerHTML = str;
@@ -1000,7 +1042,7 @@ const inputRow = () => {
           cameraMovementList.push(item.querySelector("label").innerHTML);
         }
         let str = "";
-        for (i = 0; i < cameraMovementList.length; i++) {
+        for (let i = 0; i < cameraMovementList.length; i++) {
           str += ` ${cameraMovementList[i]} | `;
         }
         const row = getParent(e.target, ".content");
@@ -1021,7 +1063,7 @@ const inputRow = () => {
         cameraMovementList.push(item.querySelector("label").innerHTML);
 
         let str = "";
-        for (i = 0; i < cameraMovementList.length; i++) {
+        for (let i = 0; i < cameraMovementList.length; i++) {
           str += ` ${cameraMovementList[i]} | `;
         }
         row.querySelector(".camera-movement .popup-btn").innerHTML = str;
@@ -1035,11 +1077,9 @@ const inputRow = () => {
   /* scene */
 
   const sceneInp = document.querySelectorAll(".scene input");
-  const sceneInpList = []
-  sceneInp.forEach((item,i) => {
-    item.oninput = (e) => {
-     
-    }
+  const sceneInpList = [];
+  sceneInp.forEach((item, i) => {
+    item.oninput = (e) => {};
   });
 };
 inputRow();
@@ -1066,20 +1106,375 @@ boardBtn.onclick = () => {
   board.classList.toggle("active");
 };
 
-const items = document.querySelectorAll(".board .item");
+const items = document.querySelectorAll(".board .item input");
 Array.from(items).map((item) => {
   item.onclick = () => {
-    if (item.querySelector("input").classList.contains("lyrics")) {
+    if (item.classList.contains("lyrics")) {
       document.querySelector(".lyrics.col").classList.toggle("true");
     }
-    if (item.querySelector("input").classList.contains("setup")) {
+    if (item.classList.contains("setup")) {
       document.querySelector(".setup.col").classList.toggle("true");
     }
-    if (item.querySelector("input").classList.contains("sound")) {
+    if (item.classList.contains("sound")) {
       document.querySelector(".sound.col").classList.toggle("true");
     }
-    if (item.querySelector("input").classList.contains("shot")) {
+    if (item.classList.contains("shot")) {
       document.querySelector(".shot.col").classList.toggle("true");
     }
   };
 });
+
+// Initialize Firebase
+function getParent(element, selector) {
+  while (element.parentElement) {
+    if (element.parentElement.matches(selector)) {
+      return element.parentElement;
+    } else {
+      element = element.parentElement;
+    }
+  }
+}
+
+/* doc db */
+let datas = [];
+
+const readDbWhenAddRow = () => {
+  const starCountRef = ref(db, "shotlist/");
+  onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+    let row = [];
+    if (data) {
+      row = Object.keys(data).map(function (key) {
+        return snapshot.val()[key];
+      });
+      row.map((item) => {
+        datas.push(item);
+      });
+      renderWhenAddRow(datas);
+    }
+  });
+};
+const renderWhenAddRow = (datas) => {
+  console.log("renderwhenaddrow run...");
+  const images = Array.from(document.querySelectorAll(".image .content img"));
+  const scenes = Array.from(document.querySelectorAll(".scene .content input"));
+  const setups = Array.from(document.querySelectorAll(".setup .content input"));
+  const shots = Array.from(document.querySelectorAll(".shot .content input"));
+  const subjects = Array.from(
+    document.querySelectorAll(".subject .content input")
+  );
+  const cameras = Array.from(
+    document.querySelectorAll(".camera .content input")
+  );
+  const ints = Array.from(document.querySelectorAll(".int .content "));
+  const shotSizes = Array.from(
+    document.querySelectorAll(".shot-size .content")
+  );
+  const shotTypes = Array.from(
+    document.querySelectorAll(".shot-type .content")
+  );
+
+  const cameraMovements = Array.from(
+    document.querySelectorAll(".camera-movement .content")
+  );
+  const equipments = Array.from(
+    document.querySelectorAll(".equipment .content")
+  );
+  const lens = Array.from(document.querySelectorAll(".lens .content input"));
+  const descriptions = Array.from(
+    document.querySelectorAll(".description .content textarea")
+  );
+  const lyrics = Array.from(
+    document.querySelectorAll(".lyrics .content input")
+  );
+  const sounds = Array.from(document.querySelectorAll(".sound .content input"));
+  const note = Array.from(document.querySelectorAll(".note .content textarea"));
+  const scriptTimes = Array.from(
+    document.querySelectorAll(".script-time .content input")
+  );
+  const ests = Array.from(document.querySelectorAll(".est .content input"));
+  const shootTime = Array.from(
+    document.querySelectorAll(".shoot-time .content input")
+  );
+  const status = Array.from(
+    document.querySelectorAll(".status .content input")
+  );
+  console.log(datas, datas.length);
+  try {
+    for (let i = 0; i < datas.length; i++) {
+      console.log(i);
+      images[i] = datas[i].image;
+      scenes[i].value = datas[i].scene;
+      setups[i].value = datas[i].setup;
+      shots[i].value = datas[i].shot;
+      subjects[i].value = datas[i].subject;
+      cameras[i].value = datas[i].camera;
+      lens[i].value = datas[i].lens;
+      descriptions[i].value = datas[i].description;
+      note[i].value = datas[i].note;
+      scriptTimes[i].value = datas[i].scriptTime;
+      ests[i].value = datas[i].est;
+      shootTime[i].value = datas[i].shootTime;
+      status[i].checked = datas[i].status;
+      lyrics[i].checked = datas[i].lyric;
+      sounds[i].checked = datas[i].sound;
+    }
+    datas.length = 0;
+  } catch (error) {
+    console.log(error);
+  }
+};
+const readDb = () => {
+  const starCountRef = ref(db, "shotlist/");
+  onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+    let row = [];
+    if (data) {
+      row = Object.keys(data).map(function (key) {
+        return snapshot.val()[key];
+      });
+      row.map((item, index) => {
+        datas.push(item);
+      });
+      render(datas);
+    }
+  });
+};
+readDb();
+const render = (datas) => {
+  console.log(datas);
+  const rows = document.querySelectorAll(".col");
+  for (let i = 0; i < datas.length; i++) {
+    Array.from(rows).map((item, i) => {
+      if (item.classList.contains("setup")) {
+        document.querySelector(".setup.col").innerHTML += setupRow;
+      }
+      if (item.classList.contains("shot")) {
+        document.querySelector(".shot.col").innerHTML += shotRow;
+      }
+      if (item.classList.contains("script-time")) {
+        document.querySelector(".script-time.col").innerHTML += scriptTimeRow;
+      }
+      if (item.classList.contains("lyrics")) {
+        document.querySelector(".lyrics.col").innerHTML += lyricsRow;
+      }
+      if (item.classList.contains("sound")) {
+        document.querySelector(".sound.col").innerHTML += soundRow;
+      }
+      if (item.classList.contains("scene")) {
+        document.querySelector(".scene").innerHTML += sceneRow;
+      }
+      if (item.classList.contains("subject")) {
+        document.querySelector(".subject").innerHTML += subjectRow;
+      }
+      if (item.classList.contains("camera")) {
+        document.querySelector(".camera").innerHTML += cameraRow;
+      }
+      if (item.classList.contains("shot-size")) {
+        document.querySelector(".shot-size").innerHTML += shotSizeRow;
+      }
+      if (item.classList.contains("shot-type")) {
+        document.querySelector(".shot-type").innerHTML += shotTypeRow;
+      }
+      if (item.classList.contains("image")) {
+        document.querySelector(".image").innerHTML += imageRow;
+      }
+      if (item.classList.contains("int")) {
+        document.querySelector(".int").innerHTML += intRow;
+      }
+      if (item.classList.contains("camera-movement")) {
+        document.querySelector(".camera-movement").innerHTML +=
+          cameraMovementRow;
+      }
+      if (item.classList.contains("equipment")) {
+        document.querySelector(".equipment").innerHTML += equipmentRow;
+      }
+      if (item.classList.contains("lens")) {
+        document.querySelector(".lens").innerHTML += lensRow;
+      }
+      if (item.classList.contains("description")) {
+        document.querySelector(".description").innerHTML += desRow;
+      }
+      if (item.classList.contains("note")) {
+        document.querySelector(".note").innerHTML += noteRow;
+      }
+      if (item.classList.contains("est")) {
+        document.querySelector(".est").innerHTML += estRow;
+      }
+      if (item.classList.contains("shoot-time")) {
+        document.querySelector(".shoot-time").innerHTML += shootTimeRow;
+      }
+      if (item.classList.contains("status")) {
+        document.querySelector(".status").innerHTML += statusRow;
+      }
+    });
+  }
+  const images = Array.from(document.querySelectorAll(".image .content img"));
+  const scenes = Array.from(document.querySelectorAll(".scene .content input"));
+  const setups = Array.from(document.querySelectorAll(".setup .content input"));
+  const shots = Array.from(document.querySelectorAll(".shot .content input"));
+  const subjects = Array.from(
+    document.querySelectorAll(".subject .content input")
+  );
+  const cameras = Array.from(
+    document.querySelectorAll(".camera .content input")
+  );
+  const ints = Array.from(document.querySelectorAll(".int .content "));
+  const shotSizes = Array.from(
+    document.querySelectorAll(".shot-size .content")
+  );
+  const shotTypes = Array.from(
+    document.querySelectorAll(".shot-type .content")
+  );
+
+  const cameraMovements = Array.from(
+    document.querySelectorAll(".camera-movement .content")
+  );
+  const equipments = Array.from(
+    document.querySelectorAll(".equipment .content")
+  );
+  const lens = Array.from(document.querySelectorAll(".lens .content input"));
+  const descriptions = Array.from(
+    document.querySelectorAll(".description .content textarea")
+  );
+  const lyrics = Array.from(
+    document.querySelectorAll(".lyrics .content input")
+  );
+  const sounds = Array.from(document.querySelectorAll(".sound .content input"));
+  const note = Array.from(document.querySelectorAll(".note .content textarea"));
+  const scriptTimes = Array.from(
+    document.querySelectorAll(".script-time .content input")
+  );
+  const ests = Array.from(document.querySelectorAll(".est .content input"));
+  const shootTime = Array.from(
+    document.querySelectorAll(".shoot-time .content input")
+  );
+  const status = Array.from(
+    document.querySelectorAll(".status .content input")
+  );
+  try {
+    for (let i = 0; i < datas.length; i++) {
+      console.log(images[i], scenes[i]);
+      images[i] = datas[i].image;
+      scenes[i].value = datas[i].scene;
+      setups[i].value = datas[i].setup;
+      shots[i].value = datas[i].shot;
+      subjects[i].value = datas[i].subject;
+      cameras[i].value = datas[i].camera;
+      lens[i].value = datas[i].lens;
+      descriptions[i].value = datas[i].description;
+      note[i].value = datas[i].note;
+      scriptTimes[i].value = datas[i].scriptTime;
+      ests[i].value = datas[i].est;
+      shootTime[i].value = datas[i].shootTime;
+      status[i].checked = datas[i].status;
+      lyrics[i].checked = datas[i].lyric;
+      sounds[i].checked = datas[i].sound;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  datas.length = 0;
+  console.log(`datas da duoc lam rong: ${datas}`);
+};
+
+const setValue = (item, index) => {};
+/* them vao db */
+
+const save = () => {
+  try {
+    const images = document.querySelectorAll(".image .content img");
+    const scenes = document.querySelectorAll(".scene .content input");
+    const setups = document.querySelectorAll(".setup .content input");
+    const shots = document.querySelectorAll(".shot .content input");
+    const subjects = document.querySelectorAll(".subject .content input");
+    const cameras = document.querySelectorAll(".camera .content input");
+    const ints = document.querySelectorAll(".int .content ");
+    const shotSizes = document.querySelectorAll(".shot-size .content");
+    const shotTypes = document.querySelectorAll(".shot-type .content");
+
+    const cameraMovements = document.querySelectorAll(
+      ".camera-movement .content"
+    );
+    const equipments = document.querySelectorAll(".equipment .content");
+    const lens = document.querySelectorAll(".lens .content input");
+    const descriptions = document.querySelectorAll(
+      ".description .content textarea"
+    );
+    const lyrics = document.querySelectorAll(".lyrics .content input");
+    const sounds = document.querySelectorAll(".sound .content input");
+    const note = document.querySelectorAll(".note .content textarea");
+    const scriptTimes = document.querySelectorAll(
+      ".script-time .content input"
+    );
+    const ests = document.querySelectorAll(".est .content input");
+    const shootTime = document.querySelectorAll(".shoot-time .content input");
+    const status = document.querySelectorAll(".status .content input");
+    for (let i = 0; i < scenes.length; i++) {
+      //lap qua so dong
+      //moi dong lap qua moi cot
+      const shotTypeInp = [];
+      const cameraMovementInp = [];
+      const equipmentMovementInp = [];
+      shotTypes[i].querySelectorAll("input").forEach((item, index) => {
+        if (item.checked) {
+          shotTypeInp.push(index);
+        }
+      });
+      cameraMovements[i].querySelectorAll("input").forEach((item, index) => {
+        if (item.checked) {
+          cameraMovementInp.push(index);
+        }
+      });
+      equipments[i].querySelectorAll("input").forEach((item, index) => {
+        if (item.checked) {
+          equipmentMovementInp.push(index);
+        }
+      });
+      let intInp = null;
+      ints[i].querySelectorAll("input").forEach((item, index) => {
+        if (item.checked) {
+          intInp = index;
+        }
+      });
+      let shotSizeInp = null;
+      shotSizes[i].querySelectorAll("input").forEach((item, index) => {
+        if (item.checked) {
+          shotSizeInp = index;
+        }
+      });
+      console.log(i);
+      console.log(setups[i].value);
+      let obj = {
+        image: `${images[i].src ? images[i].src : ""}`,
+        scene: `${scenes[i].value != undefined ? scenes[i].value : ""}`,
+        setup: `${setups[i].value != undefined ? setups[i].value : ""}`,
+        shot: `${shots[i].value != undefined ? shots[i].value : ""}`,
+        subject: `${subjects[i].value != undefined ? subjects[i].value : ""}`,
+        camera: `${cameras[i].value != undefined ? cameras[i].value : ""}`,
+        int: `${intInp ? intInp : ""}`,
+        shotSize: `${shotSizeInp ? shotSizeInp : ""}`,
+        shotType: `${shotTypeInp}`,
+        cameraMovement: `${cameraMovementInp}`,
+        equipment: `${equipmentMovementInp}`,
+        lens: `${lens[i].value ? lens[i].value : ""}`,
+        description: `${descriptions[i].value ? descriptions[i].value : ""}`,
+        lyrics: `${lyrics[i].value ? lyrics[i].value : ""}`,
+        sound: `${sounds[i].value ? sounds[i].value : ""}`,
+        note: `${note[i].value ? note[i].value : ""}`,
+        scriptTime: `${scriptTimes[i].value ? scriptTimes[i].value : ""}`,
+        est: `${ests[i].value ? ests[i].value : ""}`,
+        shootTime: `${shootTime[i].value ? shootTime[i].value : ""}`,
+        status: `${status[i].checked ? status[i].checked : ""}`,
+      };
+      set(ref(db, "shotlist/" + obj.scene), obj);
+    }
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+
+const saveBtn = document.querySelector(".save-btn");
+saveBtn.onclick = () => {
+  save();
+};
