@@ -14,7 +14,7 @@
 }
 .modal-al.active {
   opacity: 1;
-  top: 80px;
+  top: 110px;
   visibility: visible;
 }
 .modal-al h3 {
@@ -189,9 +189,15 @@ label {
 .table-row {
   display: flex;
 }
+.table .image {
+  visibility: hidden;
+}
+.table .image.active {
+  visibility: visible;
+}
 .table img {
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 14px;
 }

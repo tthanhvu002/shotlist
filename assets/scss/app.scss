@@ -13,6 +13,7 @@ html {
 .container-al{
   padding: 1% 1%;
 }
+
 ul {
   list-style: none;
   padding: 0;
@@ -125,14 +126,15 @@ label {
   }
   #file-input {
   }
-  .image {
-    form {
-     
+  .image{
+    visibility: hidden;
+    &.active{
+      visibility: visible;
     }
   }
   img {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 14px;
   }

@@ -15,7 +15,9 @@ import {
   getDatabase,
   ref,
   set,
+  child,
   onValue,
+  get,
 } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
 const firebaseConfig = {
   apiKey: "AIzaSyB7XyOLNmKHz7i5OCp76JBHYEFMjNDByVg",
@@ -57,155 +59,7 @@ const statusRow = `<div class="content">
 const cameraRow = ` <div class="content">
 <input type="text" placeholder="Camera" />
 </div>`;
-const shotSizeRow = `
-<div class="content">
-<div class="popup-btn">Shot size</div>
-<div class="modal-al">
-  <div class="row">
-    <div class="col-6">
-      <div class="list">
-        <h3>Close ups</h3>
-        <ul>
-          <li class="shot-size-input">
-            <input
-              type="radio"
-              name="shot-size"
-              
-            />
-            <label for="Close-up">Close-up</label>
-          </li>
-          <li class="shot-size-input">
-            <input
-              type="radio"
-              
-              name="shot-size"
-            />
-            <label for="Medium close-up">Medium close-up</label>
-          </li>
-          <li class="shot-size-input">
-            <input
-              type="radio"
-              
-              name="shot-size"
-            />
-            <label for="Extreme close-up"
-              >Extreme close-up</label
-            >
-          </li>
-          <li class="shot-size-input">
-            <input
-              
-              type="radio"
-              name="shot-size"
-            />
-            <label for="Wide close-up">Wide close-up</label>
-          </li>
-        </ul>
-      </div>
-      <div class="list">
-        <h3>Medium Shots</h3>
-        <ul>
-          <li class="shot-size-input">
-            <input
-              type="radio"
-              name="shot-size"
-              
-            />
-            <label for="Medium Shot">Medium Shot</label>
-          </li>
-          <li class="shot-size-input">
-            <input
-              type="radio"
-              
-              name="shot-size"
-            />
-            <label for="Close Shot">Close Shot</label>
-          </li>
-          <li class="shot-size-input">
-            <input
-              type="radio"
-              
-              name="shot-size"
-            />
-            <label for="Medium Close Shot"
-              >Medium Close Shot</label
-            >
-          </li>
-          <li class="shot-size-input">
-            <input
-              
-              type="radio"
-              name="shot-size"
-            />
-            <label for="Wide close-up">Wide close-up</label>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="list">
-        <h3>Long Shots</h3>
-        <ul>
-          <li class="shot-size-input">
-            <input
-              type="radio"
-              name="shot-size"
-              
-            />
-            <label for="Wide Shot">Wide Shot</label>
-          </li>
-          <li class="shot-size-input">
-            <input
-              type="radio"
-              
-              name="shot-size"
-            />
-            <label for="Extreme Wide Shot"
-              >Extreme Wide Shot</label
-            >
-          </li>
-          <li class="shot-size-input">
-            <input
-              type="radio"
-             
-              name="shot-size"
-            />
-            <label for="Full Shot">Full Shot</label>
-          </li>
-          <li class="shot-size-input">
-            <input
-              
-              type="radio"
-              name="shot-size"
-            />
-            <label for="Medium Full Shot"
-              >Medium Full Shot</label
-            >
-          </li>
-          <li class="shot-size-input">
-            <input
-              type="radio"
-              
-              name="shot-size"
-            />
-            <label for="Long Shot">Long Shot</label>
-          </li>
-          <li class="shot-size-input">
-            <input
-              
-              type="radio"
-              name="shot-size"
-            />
-            <label 
-              >Extreme Long Shot</label
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-</div>`;
+
 const shotTypeRow = `
 <div class="content">
                 <div class="popup-btn">Shot type</div>
@@ -218,64 +72,56 @@ const shotTypeRow = `
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              name="shot-size"
-                              id="Close-up"
+                              
                             />
                             <label> Eye Level </label>
                           </li>
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              id="Medium close-up"
-                              name="shot-size"
+                              
                             />
                             <label>Low Angle </label>
                           </li>
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              id="Extreme close-up"
-                              name="shot-size"
+                              
                             />
                             <label>High Angle </label>
                           </li>
                           <li class="shot-type-input">
                             <input
-                              id="Wide close-up"
                               type="checkbox"
-                              name="shot-size"
+                              
                             />
                             <label>Overhead </label>
                           </li>
                           <li class="shot-type-input">
                             <input
-                              id="Wide close-up"
                               type="checkbox"
-                              name="shot-size"
+                              
                             />
                             <label> Shoulder Level </label>
                           </li>
                           <li class="shot-type-input">
                             <input
-                              id="Wide close-up"
                               type="checkbox"
-                              name="shot-size"
+                              
                             />
                             <label> Hip Level </label>
                           </li>
                           <li class="shot-type-input">
                             <input
-                              id="Wide close-up"
                               type="checkbox"
-                              name="shot-size"
+                              
                             />
                             <label> Knee Level </label>
                           </li>
                           <li class="shot-type-input">
                             <input
-                              id="Wide close-up"
                               type="checkbox"
-                              name="shot-size"
+                              
                             />
                             <label>Ground Level </label>
                           </li>
@@ -287,16 +133,14 @@ const shotTypeRow = `
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              name="shot-size"
-                              id="Medium Shot"
+                              
                             />
                             <label>Dutch (left)</label>
                           </li>
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              id="Close Shot"
-                              name="shot-size"
+                              
                             />
                             <label>Dutch (right)</label>
                           </li>
@@ -310,48 +154,42 @@ const shotTypeRow = `
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              name="shot-size"
-                              id="Medium Shot"
+                              
                             />
                             <label>Single Shot</label>
                           </li>
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              id="Close Shot"
-                              name="shot-size"
+                              
                             />
                             <label>Two Shot</label>
                           </li>
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              id="Medium Close Shot"
-                              name="shot-size"
+                              
                             />
                             <label>Three Shot</label>
                           </li>
                           <li class="shot-type-input">
                             <input
-                              id="Wide close-up"
                               type="checkbox"
-                              name="shot-size"
+                              
                             />
                             <label>Over-the-Shoulder</label>
                           </li>
                           <li class="shot-type-input">
                             <input
-                              id="Wide close-up"
                               type="checkbox"
-                              name="shot-size"
+                              
                             />
                             <label>Over-the-Hip</label>
                           </li>
                           <li class="shot-type-input">
                             <input
-                              id="Wide close-up"
                               type="checkbox"
-                              name="shot-size"
+                              
                             />
                             <label>Point of View</label>
                           </li>
@@ -363,40 +201,35 @@ const shotTypeRow = `
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              name="shot-size"
-                              id="Wide Shot"
+                              
                             />
                             <label>Rack/Focus </label>
                           </li>
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              id="Extreme Wide Shot"
-                              name="shot-size"
+                              
                             />
                             <label>Shallow Focus </label>
                           </li>
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              id="Full Shot"
-                              name="shot-size"
+                              
                             />
                             <label>Deep Focus </label>
                           </li>
                           <li class="shot-type-input">
                             <input
-                              id="Medium Full Shot"
                               type="checkbox"
-                              name="shot-size"
+                              
                             />
                             <label>Tilt-Shift </label>
                           </li>
                           <li class="shot-type-input">
                             <input
                               type="checkbox"
-                              id="Long Shot"
-                              name="shot-size"
+                              
                             />
                             <label>Zoom</label>
                           </li>
@@ -411,9 +244,8 @@ const imageRow = ` <div class="content">
 <form>
   <input type="file" id="file-input" accept="image/*" />
 </form>
-<label  id="image-container">
-  <img src="" alt="">
-</label>
+<img src="" alt="" class="image">
+
 </div>`;
 const intRow = ` <div class="content">
 <div class="popup-btn">Int/Ext – Day/Night </div>
@@ -429,24 +261,18 @@ const intRow = ` <div class="content">
           <li class="int-input">
             <input
               type="radio"
-              name="int"
-              id="Int-Day"
             />
             <label for="Int-Day">Int-Day</label>
           </li>
           <li class="int-input">
             <input
               type="radio"
-              id="Int-Night"
-              name="int"
             />
             <label for="Int-Night">Int-Night</label>
           </li>
           <li class="int-input">
             <input
               type="radio"
-              id="Ext-Day"
-              name="int"
             />
             <label for="Ext-Day"
               >Ext-Day</label
@@ -454,9 +280,7 @@ const intRow = ` <div class="content">
           </li>
           <li class="int-input">
             <input
-              id="Ext-Night"
               type="radio"
-              name="int"
             />
             <label for="Ext-Night">Ext-Night</label>
           </li>
@@ -797,17 +621,19 @@ const soundRow = `<div class="content">
 /* add row */
 const newBtn = document.querySelector(".new-btn");
 newBtn.onclick = () => {
+  save();
   addRow();
 
   findPopups();
   inputRow();
   readDbWhenAddRow();
 };
+const dbRef = ref(getDatabase());
 
 const addRow = () => {
   const rows = document.querySelectorAll(".col");
 
-  Array.from(rows).map((item) => {
+  Array.from(rows).map((item, index) => {
     if (item.classList.contains("setup")) {
       document.querySelector(".setup.col").innerHTML += setupRow;
     }
@@ -833,6 +659,152 @@ const addRow = () => {
       document.querySelector(".camera").innerHTML += cameraRow;
     }
     if (item.classList.contains("shot-size")) {
+      const shotSizeRow = `
+<div class="content">
+<div class="popup-btn">Shot size</div>
+<div class="modal-al">
+  <div class="row">
+    <div class="col-6">
+      <div class="list">
+        <h3>Close ups</h3>
+        <ul>
+          <li class="shot-size-input">
+            <input
+              type="radio"
+              name="shot-size-${index}"
+            />
+            <label >Close-up</label>
+          </li>
+          <li class="shot-size-input">
+            <input
+              type="radio"
+              name="shot-size-${index}"
+            />
+            <label >Medium close-up</label>
+          </li>
+          <li class="shot-size-input">
+            <input
+              type="radio"
+              name="shot-size-${index}"
+            />
+            <label 
+              >Extreme close-up</label
+            >
+          </li>
+          <li class="shot-size-input">
+            <input
+              
+              type="radio"
+              name="shot-size-${index}"
+            />
+            <label >Wide close-up</label>
+          </li>
+        </ul>
+      </div>
+      <div class="list">
+        <h3>Medium Shots</h3>
+        <ul>
+          <li class="shot-size-input">
+            <input
+              type="radio"
+              name="shot-size-${index}"
+              
+            />
+            <label >Medium Shot</label>
+          </li>
+          <li class="shot-size-input">
+            <input
+              type="radio"
+              name="shot-size-${index}"
+              
+            />
+            <label >Close Shot</label>
+          </li>
+          <li class="shot-size-input">
+            <input
+              type="radio"
+              name="shot-size-${index}"
+              
+            />
+            <label 
+              >Medium Close Shot</label
+            >
+          </li>
+          <li class="shot-size-input">
+            <input
+              
+              type="radio"
+              name="shot-size-${index}"
+            />
+            <label>Wide close-up</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="list">
+        <h3>Long Shots</h3>
+        <ul>
+          <li class="shot-size-input">
+            <input
+              type="radio"
+              name="shot-size-${index}"
+              
+            />
+            <label>Wide Shot</label>
+          </li>
+          <li class="shot-size-input">
+            <input
+              type="radio"
+              name="shot-size-${index}"
+              
+            />
+            <label 
+              >Extreme Wide Shot</label
+            >
+          </li>
+          <li class="shot-size-input">
+            <input
+              type="radio"
+             name="shot-size-${index}"
+              
+            />
+            <label >Full Shot</label>
+          </li>
+          <li class="shot-size-input">
+            <input
+              
+              type="radio"
+              name="shot-size-${index}"
+            />
+            <label 
+              >Medium Full Shot</label
+            >
+          </li>
+          <li class="shot-size-input">
+            <input
+              type="radio"
+              name="shot-size-${index}"
+              
+            />
+            <label >Long Shot</label>
+          </li>
+          <li class="shot-size-input">
+            <input
+              
+              type="radio"
+              name="shot-size-${index}"
+            />
+            <label 
+              >Extreme Long Shot</label
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>`;
       document.querySelector(".shot-size").innerHTML += shotSizeRow;
     }
     if (item.classList.contains("shot-type")) {
@@ -881,30 +853,24 @@ const findPopups = () => {
   });
 };
 
-findPopups();
 const inputRow = () => {
   /* upload image */
   const fileInputs = document.querySelectorAll("#file-input");
-  const imageContainer = document.querySelectorAll("#image-container");
-  const imageLabel = document.querySelectorAll(".image label");
-  imageLabel.forEach((item, index) => {
-    item.onclick = () => {
-      fileInputs[index].click();
-      const reader = new FileReader();
-      const file = fileInputs[index].files[0];
-      const image = document.querySelectorAll(".image img")[index];
-      reader.addEventListener("load", function () {
-        image.src = reader.result;
-        imageContainer[i].appendChild(image);
 
-        if (file) {
-          reader.readAsDataURL(file);
-        }
-      });
+  const imageLabel = document.querySelectorAll(".image label");
+  fileInputs.forEach((item, index) => {
+    item.onchange = () => {
+      const file = fileInputs[index].files[0];
+      console.log(file);
+      const image = document.querySelectorAll(".image img")[index];
+
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        image.src = e.target.result;
+        image.classList.add("active");
+      };
+      reader.readAsDataURL(file);
     };
-  });
-  fileInputs.forEach((fileInput, i) => {
-    fileInput.addEventListener("change", function (e) {});
   });
 
   /* Shot size input */
@@ -950,7 +916,14 @@ const inputRow = () => {
           str += ` ${shotTypeInpList[i]} | `;
         }
         const row = getParent(e.target, ".content");
-        row.querySelector(".shot-type .popup-btn").innerHTML = str;
+        if (
+          row.querySelector(".shot-type .popup-btn").innerHTML != "" &&
+          row.querySelector(".shot-type .popup-btn").innerHTML != "Shot Type"
+        ) {
+          row.querySelector(".shot-type .popup-btn").innerHTML += str;
+        } else {
+          row.querySelector(".shot-type .popup-btn").innerHTML = str;
+        }
       } else {
         item.querySelector("input").checked = false;
 
@@ -967,7 +940,7 @@ const inputRow = () => {
         shotTypeInpList.push(item.querySelector("label").innerHTML);
 
         let str = "";
-        for (i = 0; i < shotTypeInpList.length; i++) {
+        for (let i = 0; i < shotTypeInpList.length; i++) {
           str += ` ${shotTypeInpList[i]} | `;
         }
 
@@ -997,7 +970,15 @@ const inputRow = () => {
           str += ` ${equipmentInpList[i]} | `;
         }
         const row = getParent(e.target, ".content");
-        row.querySelector(".equipment .popup-btn").innerHTML = str;
+
+        if (
+          row.querySelector(".equipment .popup-btn").innerHTML != "" &&
+          row.querySelector(".equipment .popup-btn").innerHTML != "Equipment"
+        ) {
+          row.querySelector(".equipment .popup-btn").innerHTML += str;
+        } else {
+          row.querySelector(".equipment .popup-btn").innerHTML = str;
+        }
       } else {
         item.querySelector("input").checked = false;
 
@@ -1046,7 +1027,15 @@ const inputRow = () => {
           str += ` ${cameraMovementList[i]} | `;
         }
         const row = getParent(e.target, ".content");
-        row.querySelector(".camera-movement .popup-btn").innerHTML = str;
+        if (
+          row.querySelector(".camera-movement .popup-btn").innerHTML != "" &&
+          row.querySelector(".camera-movement .popup-btn").innerHTML !=
+            "Camera Movement"
+        ) {
+          row.querySelector(".camera-movement .popup-btn").innerHTML += str;
+        } else {
+          row.querySelector(".camera-movement .popup-btn").innerHTML = str;
+        }
       } else {
         item.querySelector("input").checked = false;
 
@@ -1082,7 +1071,6 @@ const inputRow = () => {
     item.oninput = (e) => {};
   });
 };
-inputRow();
 
 /* delete column */
 
@@ -1153,9 +1141,9 @@ const readDbWhenAddRow = () => {
       renderWhenAddRow(datas);
     }
   });
+  console.log("Readdb when add row run");
 };
 const renderWhenAddRow = (datas) => {
-  console.log("renderwhenaddrow run...");
   const images = Array.from(document.querySelectorAll(".image .content img"));
   const scenes = Array.from(document.querySelectorAll(".scene .content input"));
   const setups = Array.from(document.querySelectorAll(".setup .content input"));
@@ -1199,10 +1187,75 @@ const renderWhenAddRow = (datas) => {
   const status = Array.from(
     document.querySelectorAll(".status .content input")
   );
-  console.log(datas, datas.length);
   try {
     for (let i = 0; i < datas.length; i++) {
-      console.log(i);
+      if (datas[i].int != "") {
+        ints[i].querySelectorAll("input")[Number(datas[i].int)].click();
+        ints[i].querySelector(".popup-btn").innerHTML =
+          ints[i].querySelectorAll("label")[Number(datas[i].int)].innerHTML;
+      }
+      if (datas[i].shotSize != "") {
+        shotSizes[i]
+          .querySelectorAll("input")
+          [Number(datas[i].shotSize)].click();
+        shotSizes[i].querySelector(".popup-btn").innerHTML =
+          shotSizes[i].querySelectorAll("label")[
+            Number(datas[i].shotSize)
+          ].innerHTML;
+      }
+      if (datas[i].shotType != "") {
+        datas[i].shotType = datas[i].shotType.split(",");
+        datas[i].shotType = datas[i].shotType.map((item) => Number(item));
+        let str = "";
+        Array.from(shotTypes[i].querySelectorAll(".shot-type-input")).map(
+          (item, j) => {
+            if (datas[i].shotType.includes(j)) {
+              item.classList.toggle("true");
+              item.querySelector("input").click();
+              str += ` ${
+                shotTypes[i].querySelectorAll("label")[j].innerHTML
+              } | `;
+            }
+            shotTypes[i].querySelector(".popup-btn").innerHTML = str;
+          }
+        );
+      }
+      if (datas[i].equipment != "") {
+        datas[i].equipment = datas[i].equipment.split(",");
+        datas[i].equipment = datas[i].equipment.map((item) => Number(item));
+        let str = "";
+        Array.from(equipments[i].querySelectorAll(".equipment-input")).map(
+          (item, j) => {
+            if (datas[i].equipment.includes(j)) {
+              item.classList.toggle("true");
+              item.querySelector("input").click();
+              str += ` ${
+                equipments[i].querySelectorAll("label")[j].innerHTML
+              } | `;
+            }
+            equipments[i].querySelector(".popup-btn").innerHTML = str;
+          }
+        );
+      }
+      if (datas[i].cameraMovement != "") {
+        datas[i].cameraMovement = datas[i].cameraMovement.split(",");
+        datas[i].cameraMovement = datas[i].cameraMovement.map((item) =>
+          Number(item)
+        );
+        let str = "";
+        Array.from(
+          cameraMovements[i].querySelectorAll(".camera-movement-input")
+        ).map((item, j) => {
+          if (datas[i].cameraMovement.includes(j)) {
+            item.classList.toggle("true");
+            item.querySelector("input").click();
+            str += ` ${
+              cameraMovements[i].querySelectorAll("label")[j].innerHTML
+            } | `;
+          }
+          cameraMovements[i].querySelector(".popup-btn").innerHTML = str;
+        });
+      }
       images[i] = datas[i].image;
       scenes[i].value = datas[i].scene;
       setups[i].value = datas[i].setup;
@@ -1220,29 +1273,40 @@ const renderWhenAddRow = (datas) => {
       sounds[i].checked = datas[i].sound;
     }
     datas.length = 0;
+    console.log("render when add row run");
   } catch (error) {
     console.log(error);
   }
 };
+
 const readDb = () => {
-  const starCountRef = ref(db, "shotlist/");
-  onValue(starCountRef, (snapshot) => {
-    const data = snapshot.val();
-    let row = [];
-    if (data) {
-      row = Object.keys(data).map(function (key) {
-        return snapshot.val()[key];
-      });
-      row.map((item, index) => {
-        datas.push(item);
-      });
-      render(datas);
-    }
-  });
+  get(child(dbRef, `shotlist/`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        let row = [];
+        if (data) {
+          row = Object.keys(data).map(function (key) {
+            return snapshot.val()[key];
+          });
+          row.map((item, index) => {
+            datas.push(item);
+          });
+          render(datas);
+        }
+      } else {
+        console.log("No data available");
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 };
-readDb();
+
+window.onload = () => {
+  readDb();
+};
 const render = (datas) => {
-  console.log(datas);
   const rows = document.querySelectorAll(".col");
   for (let i = 0; i < datas.length; i++) {
     Array.from(rows).map((item, i) => {
@@ -1271,6 +1335,152 @@ const render = (datas) => {
         document.querySelector(".camera").innerHTML += cameraRow;
       }
       if (item.classList.contains("shot-size")) {
+        const shotSizeRow = `
+        <div class="content">
+        <div class="popup-btn">Shot size</div>
+        <div class="modal-al">
+          <div class="row">
+            <div class="col-6">
+              <div class="list">
+                <h3>Close ups</h3>
+                <ul>
+                  <li class="shot-size-input">
+                    <input
+                      type="radio"
+                      name="shot-size-${i}"
+                    />
+                    <label >Close-up</label>
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      type="radio"
+                      name="shot-size-${i}"
+                    />
+                    <label >Medium close-up</label>
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      type="radio"
+                      name="shot-size-${i}"
+                    />
+                    <label 
+                      >Extreme close-up</label
+                    >
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      
+                      type="radio"
+                      name="shot-size-${i}"
+                    />
+                    <label >Wide close-up</label>
+                  </li>
+                </ul>
+              </div>
+              <div class="list">
+                <h3>Medium Shots</h3>
+                <ul>
+                  <li class="shot-size-input">
+                    <input
+                      type="radio"
+                      name="shot-size-${i}"
+                      
+                    />
+                    <label >Medium Shot</label>
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      type="radio"
+                      name="shot-size-${i}"
+                      
+                    />
+                    <label >Close Shot</label>
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      type="radio"
+                      name="shot-size-${i}"
+                      
+                    />
+                    <label 
+                      >Medium Close Shot</label
+                    >
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      
+                      type="radio"
+                      name="shot-size-${i}"
+                    />
+                    <label>Wide close-up</label>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="list">
+                <h3>Long Shots</h3>
+                <ul>
+                  <li class="shot-size-input">
+                    <input
+                      type="radio"
+                      name="shot-size-${i}"
+                      
+                    />
+                    <label>Wide Shot</label>
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      type="radio"
+                      name="shot-size-${i}"
+                      
+                    />
+                    <label 
+                      >Extreme Wide Shot</label
+                    >
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      type="radio"
+                     name="shot-size-${i}"
+                      
+                    />
+                    <label >Full Shot</label>
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      
+                      type="radio"
+                      name="shot-size-${i}"
+                    />
+                    <label 
+                      >Medium Full Shot</label
+                    >
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      type="radio"
+                      name="shot-size-${i}"
+                      
+                    />
+                    <label >Long Shot</label>
+                  </li>
+                  <li class="shot-size-input">
+                    <input
+                      
+                      type="radio"
+                      name="shot-size-${i}"
+                    />
+                    <label 
+                      >Extreme Long Shot</label
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>`;
         document.querySelector(".shot-size").innerHTML += shotSizeRow;
       }
       if (item.classList.contains("shot-type")) {
@@ -1352,10 +1562,82 @@ const render = (datas) => {
   const status = Array.from(
     document.querySelectorAll(".status .content input")
   );
+
   try {
     for (let i = 0; i < datas.length; i++) {
-      console.log(images[i], scenes[i]);
-      images[i] = datas[i].image;
+      if (datas[i].int != "") {
+        datas[i].int = datas[i].int.split(",");
+        datas[i].int = datas[i].int.map((item) => Number(item));
+        ints[i].querySelectorAll("input")[Number(datas[i].int)].click();
+        ints[i].querySelector(".popup-btn").innerHTML =
+          ints[i].querySelectorAll("label")[Number(datas[i].int)].innerHTML;
+      }
+      if (datas[i].shotSize != "") {
+        datas[i].shotSize = datas[i].shotSize.split(",");
+        datas[i].shotSize = datas[i].shotSize.map((item) => Number(item));
+        shotSizes[i]
+          .querySelectorAll("input")
+          [Number(datas[i].shotSize)].click();
+        shotSizes[i].querySelector(".popup-btn").innerHTML =
+          shotSizes[i].querySelectorAll("label")[
+            Number(datas[i].shotSize)
+          ].innerHTML;
+      }
+      if (datas[i].shotType != "") {
+        datas[i].shotType = datas[i].shotType.split(",");
+        datas[i].shotType = datas[i].shotType.map((item) => Number(item));
+        let str = "";
+        Array.from(shotTypes[i].querySelectorAll(".shot-type-input")).map(
+          (item, j) => {
+            if (datas[i].shotType.includes(j)) {
+              item.classList.toggle("true");
+              item.querySelector("input").click();
+              str += ` ${
+                shotTypes[i].querySelectorAll("label")[j].innerHTML
+              } | `;
+            }
+            shotTypes[i].querySelector(".popup-btn").innerHTML = str;
+          }
+        );
+      }
+      if (datas[i].equipment != "") {
+        datas[i].equipment = datas[i].equipment.split(",");
+        datas[i].equipment = datas[i].equipment.map((item) => Number(item));
+        let str = "";
+        Array.from(equipments[i].querySelectorAll(".equipment-input")).map(
+          (item, j) => {
+            if (datas[i].equipment.includes(j)) {
+              item.classList.toggle("true");
+              item.querySelector("input").click();
+              str += ` ${
+                equipments[i].querySelectorAll("label")[j].innerHTML
+              } | `;
+            }
+            equipments[i].querySelector(".popup-btn").innerHTML = str;
+          }
+        );
+      }
+      if (datas[i].cameraMovement != "") {
+        datas[i].cameraMovement = datas[i].cameraMovement.split(",");
+        datas[i].cameraMovement = datas[i].cameraMovement.map((item) =>
+          Number(item)
+        );
+        let str = "";
+        Array.from(
+          cameraMovements[i].querySelectorAll(".camera-movement-input")
+        ).map((item, j) => {
+          if (datas[i].cameraMovement.includes(j)) {
+            item.classList.toggle("true");
+            item.querySelector("input").click();
+            str += ` ${
+              cameraMovements[i].querySelectorAll("label")[j].innerHTML
+            } | `;
+          }
+          cameraMovements[i].querySelector(".popup-btn").innerHTML = str;
+        });
+      }
+      images[i].classList.add("active");
+      images[i].src = datas[i].image;
       scenes[i].value = datas[i].scene;
       setups[i].value = datas[i].setup;
       shots[i].value = datas[i].shot;
@@ -1375,10 +1657,11 @@ const render = (datas) => {
     console.log(error);
   }
   datas.length = 0;
-  console.log(`datas da duoc lam rong: ${datas}`);
+  console.log("render run");
+  inputRow();
+  findPopups();
 };
 
-const setValue = (item, index) => {};
 /* them vao db */
 
 const save = () => {
@@ -1410,71 +1693,75 @@ const save = () => {
     const ests = document.querySelectorAll(".est .content input");
     const shootTime = document.querySelectorAll(".shoot-time .content input");
     const status = document.querySelectorAll(".status .content input");
+
     for (let i = 0; i < scenes.length; i++) {
       //lap qua so dong
       //moi dong lap qua moi cot
-      const shotTypeInp = [];
-      const cameraMovementInp = [];
-      const equipmentMovementInp = [];
-      shotTypes[i].querySelectorAll("input").forEach((item, index) => {
-        if (item.checked) {
-          shotTypeInp.push(index);
-        }
-      });
-      cameraMovements[i].querySelectorAll("input").forEach((item, index) => {
-        if (item.checked) {
-          cameraMovementInp.push(index);
-        }
-      });
-      equipments[i].querySelectorAll("input").forEach((item, index) => {
-        if (item.checked) {
-          equipmentMovementInp.push(index);
-        }
-      });
-      let intInp = null;
-      ints[i].querySelectorAll("input").forEach((item, index) => {
-        if (item.checked) {
-          intInp = index;
-        }
-      });
-      let shotSizeInp = null;
-      shotSizes[i].querySelectorAll("input").forEach((item, index) => {
-        if (item.checked) {
-          shotSizeInp = index;
-        }
-      });
-      console.log(i);
-      console.log(setups[i].value);
-      let obj = {
-        image: `${images[i].src ? images[i].src : ""}`,
-        scene: `${scenes[i].value != undefined ? scenes[i].value : ""}`,
-        setup: `${setups[i].value != undefined ? setups[i].value : ""}`,
-        shot: `${shots[i].value != undefined ? shots[i].value : ""}`,
-        subject: `${subjects[i].value != undefined ? subjects[i].value : ""}`,
-        camera: `${cameras[i].value != undefined ? cameras[i].value : ""}`,
-        int: `${intInp ? intInp : ""}`,
-        shotSize: `${shotSizeInp ? shotSizeInp : ""}`,
-        shotType: `${shotTypeInp}`,
-        cameraMovement: `${cameraMovementInp}`,
-        equipment: `${equipmentMovementInp}`,
-        lens: `${lens[i].value ? lens[i].value : ""}`,
-        description: `${descriptions[i].value ? descriptions[i].value : ""}`,
-        lyrics: `${lyrics[i].value ? lyrics[i].value : ""}`,
-        sound: `${sounds[i].value ? sounds[i].value : ""}`,
-        note: `${note[i].value ? note[i].value : ""}`,
-        scriptTime: `${scriptTimes[i].value ? scriptTimes[i].value : ""}`,
-        est: `${ests[i].value ? ests[i].value : ""}`,
-        shootTime: `${shootTime[i].value ? shootTime[i].value : ""}`,
-        status: `${status[i].checked ? status[i].checked : ""}`,
-      };
-      set(ref(db, "shotlist/" + obj.scene), obj);
+      if (scenes[i].value == "") {
+      } else {
+        const shotTypeInp = [];
+        const cameraMovementInp = [];
+        const equipmentMovementInp = [];
+        shotTypes[i].querySelectorAll("input").forEach((item, index) => {
+          if (item.checked) {
+            shotTypeInp.push(index);
+          }
+        });
+        cameraMovements[i].querySelectorAll("input").forEach((item, index) => {
+          if (item.checked) {
+            cameraMovementInp.push(index);
+          }
+        });
+        equipments[i].querySelectorAll("input").forEach((item, index) => {
+          if (item.checked) {
+            equipmentMovementInp.push(index);
+          }
+        });
+        let intInp = [];
+        ints[i].querySelectorAll("input").forEach((item, index) => {
+          if (item.checked) {
+            intInp.push(index);
+          }
+        });
+        let shotSizeInp = [];
+        shotSizeInp = shotSizes[i]
+          .querySelectorAll("input")
+          .map((item, index) => {
+            if (item.checked == true) {
+              return index;
+            }
+          });
+        let obj = {
+          image: `${images[i].src ? images[i].src : ""}`,
+          scene: `${scenes[i].value != undefined ? scenes[i].value : ""}`,
+          setup: `${setups[i].value != undefined ? setups[i].value : ""}`,
+          shot: `${shots[i].value != undefined ? shots[i].value : ""}`,
+          subject: `${subjects[i].value != undefined ? subjects[i].value : ""}`,
+          camera: `${cameras[i].value != undefined ? cameras[i].value : ""}`,
+          int: `${intInp}`,
+          shotSize: `${shotSizeInp}`,
+          shotType: `${shotTypeInp}`,
+          cameraMovement: `${cameraMovementInp}`,
+          equipment: `${equipmentMovementInp}`,
+          lens: `${lens[i].value ? lens[i].value : ""}`,
+          description: `${descriptions[i].value ? descriptions[i].value : ""}`,
+          lyrics: `${lyrics[i].value ? lyrics[i].value : ""}`,
+          sound: `${sounds[i].value ? sounds[i].value : ""}`,
+          note: `${note[i].value ? note[i].value : ""}`,
+          scriptTime: `${scriptTimes[i].value ? scriptTimes[i].value : ""}`,
+          est: `${ests[i].value ? ests[i].value : ""}`,
+          shootTime: `${shootTime[i].value ? shootTime[i].value : ""}`,
+          status: `${status[i].checked ? status[i].checked : ""}`,
+        };
+        set(ref(db, "shotlist/" + obj.scene), obj);
+      }
     }
+    console.log("Save func run");
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 };
 
-const saveBtn = document.querySelector(".save-btn");
-saveBtn.onclick = () => {
+window.onclick = () => {
   save();
 };
