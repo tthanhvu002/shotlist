@@ -247,50 +247,7 @@ const imageRow = ` <div class="content">
 <img src="" alt="" class="image">
 
 </div>`;
-const intRow = ` <div class="content">
-<div class="popup-btn">Int/Ext – Day/Night </div>
-<div class="modal-al">
-  <div class="row">
-    <div class="col-12">
-      
-      <div class="list">
-        <h3>
-          Int/Ext – Day/Night 
-        </h3>
-        <ul>
-          <li class="int-input">
-            <input
-              type="radio"
-            />
-            <label for="Int-Day">Int-Day</label>
-          </li>
-          <li class="int-input">
-            <input
-              type="radio"
-            />
-            <label for="Int-Night">Int-Night</label>
-          </li>
-          <li class="int-input">
-            <input
-              type="radio"
-            />
-            <label for="Ext-Day"
-              >Ext-Day</label
-            >
-          </li>
-          <li class="int-input">
-            <input
-              type="radio"
-            />
-            <label for="Ext-Night">Ext-Night</label>
-          </li>
-        </ul>
-      </div>
-    </div>
-   
-  </div>
-</div>
-</div>`;
+
 const cameraMovementRow = ` <div class="content">
 <div class="popup-btn">Camera Movement</div>
 <div class="modal-al">
@@ -671,21 +628,27 @@ const addRow = () => {
           <li class="shot-size-input">
             <input
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
             />
             <label >Close-up</label>
           </li>
           <li class="shot-size-input">
             <input
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
             />
             <label >Medium close-up</label>
           </li>
           <li class="shot-size-input">
             <input
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
             />
             <label 
               >Extreme close-up</label
@@ -695,7 +658,9 @@ const addRow = () => {
             <input
               
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
             />
             <label >Wide close-up</label>
           </li>
@@ -707,7 +672,9 @@ const addRow = () => {
           <li class="shot-size-input">
             <input
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
               
             />
             <label >Medium Shot</label>
@@ -715,7 +682,9 @@ const addRow = () => {
           <li class="shot-size-input">
             <input
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
               
             />
             <label >Close Shot</label>
@@ -723,7 +692,9 @@ const addRow = () => {
           <li class="shot-size-input">
             <input
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
               
             />
             <label 
@@ -734,7 +705,9 @@ const addRow = () => {
             <input
               
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
             />
             <label>Wide close-up</label>
           </li>
@@ -748,7 +721,9 @@ const addRow = () => {
           <li class="shot-size-input">
             <input
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
               
             />
             <label>Wide Shot</label>
@@ -756,7 +731,9 @@ const addRow = () => {
           <li class="shot-size-input">
             <input
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
               
             />
             <label 
@@ -766,7 +743,9 @@ const addRow = () => {
           <li class="shot-size-input">
             <input
               type="radio"
-             name="shot-size-${index}"
+             name="shot-size-${
+               document.querySelectorAll(".shot-size .content").length + 1
+             }"
               
             />
             <label >Full Shot</label>
@@ -775,7 +754,9 @@ const addRow = () => {
             <input
               
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
             />
             <label 
               >Medium Full Shot</label
@@ -784,7 +765,9 @@ const addRow = () => {
           <li class="shot-size-input">
             <input
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
               
             />
             <label >Long Shot</label>
@@ -793,7 +776,9 @@ const addRow = () => {
             <input
               
               type="radio"
-              name="shot-size-${index}"
+              name="shot-size-${
+                document.querySelectorAll(".shot-size .content").length + 1
+              }"
             />
             <label 
               >Extreme Long Shot</label
@@ -814,6 +799,54 @@ const addRow = () => {
       document.querySelector(".image").innerHTML += imageRow;
     }
     if (item.classList.contains("int")) {
+      const intRow = ` <div class="content">
+<div class="popup-btn">Int/Ext – Day/Night </div>
+<div class="modal-al">
+  <div class="row">
+    <div class="col-12">
+      
+      <div class="list">
+        <h3>
+          Int/Ext – Day/Night 
+        </h3>
+        <ul>
+          <li class="int-input">
+            <input
+            name="int-${document.querySelectorAll(".int .content").length}"
+              type="radio"
+            />
+            <label for="Int-Day">Int-Day</label>
+          </li>
+          <li class="int-input">
+            <input
+            name="int-${document.querySelectorAll(".int .content").length}"
+              type="radio"
+            />
+            <label for="Int-Night">Int-Night</label>
+          </li>
+          <li class="int-input">
+            <input
+            name="int-${document.querySelectorAll(".int .content").length}"
+              type="radio"
+            />
+            <label for="Ext-Day"
+              >Ext-Day</label
+            >
+          </li>
+          <li class="int-input">
+            <input
+            name="int-${document.querySelectorAll(".int .content").length}"
+              type="radio"
+            />
+            <label for="Ext-Night">Ext-Night</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+   
+  </div>
+</div>
+</div>`;
       document.querySelector(".int").innerHTML += intRow;
     }
     if (item.classList.contains("camera-movement")) {
@@ -857,7 +890,6 @@ const inputRow = () => {
   /* upload image */
   const fileInputs = document.querySelectorAll("#file-input");
 
-  const imageLabel = document.querySelectorAll(".image label");
   fileInputs.forEach((item, index) => {
     item.onchange = () => {
       const file = fileInputs[index].files[0];
@@ -898,171 +930,206 @@ const inputRow = () => {
     };
   });
   /* shot type input */
-  let shotTypeInpList = [];
+  Array.from(document.querySelectorAll(".shot-type .content")).map(
+    (item, index) => {
+      let shotTypeInpList = [];
+      const shotTypeInp = item.querySelectorAll(".shot-type-input");
+      Array.from(shotTypeInp).map((itemInp) => {
+        itemInp.onclick = (e) => {
+          itemInp.classList.toggle("true");
+          if (itemInp.classList.contains("true")) {
+            itemInp.querySelector("input").checked = true;
+            if (
+              shotTypeInpList.includes(itemInp.querySelector("label").innerHTML)
+            ) {
+              shotTypeInpList = []
+            } else {
+              shotTypeInpList.push(itemInp.querySelector("label").innerHTML);
+            }
 
-  const shotTypeInp = document.querySelectorAll(".shot-type-input");
-  Array.from(shotTypeInp).map((item) => {
-    item.onclick = (e) => {
-      item.classList.toggle("true");
-      if (item.classList.contains("true")) {
-        item.querySelector("input").checked = true;
-        if (shotTypeInpList.includes(item.querySelector("label").innerHTML)) {
-        } else {
-          shotTypeInpList.push(item.querySelector("label").innerHTML);
-        }
+            let str = item.querySelector('label').innerHTML
+            for (let i = 0; i < shotTypeInpList.length; i++) {
+              if(str.includes(shotTypeInpList[i])){
 
-        let str = "";
-        for (let i = 0; i < shotTypeInpList.length; i++) {
-          str += ` ${shotTypeInpList[i]} | `;
-        }
-        const row = getParent(e.target, ".content");
-        if (
-          row.querySelector(".shot-type .popup-btn").innerHTML != "" &&
-          row.querySelector(".shot-type .popup-btn").innerHTML != "Shot Type"
-        ) {
-          row.querySelector(".shot-type .popup-btn").innerHTML += str;
-        } else {
-          row.querySelector(".shot-type .popup-btn").innerHTML = str;
-        }
-      } else {
-        item.querySelector("input").checked = false;
+              } else{
 
-        findShotTypeInp(e);
-      }
-    };
-  });
+                str += ` ${shotTypeInpList[i]} | `;
+              }
+            }
+            const row = getParent(e.target, ".content");
+            if (
+              row.querySelector(".shot-type .popup-btn").innerHTML != "" &&
+              row.querySelector(".shot-type .popup-btn").innerHTML !=
+                "Shot type"
+            ) {
+              row.querySelector(".shot-type .popup-btn").innerHTML = str;
+            } else {
+              row.querySelector(".shot-type .popup-btn").innerHTML = str;
+            }
+          } else {
+            itemInp.querySelector("input").checked = false;
 
-  const findShotTypeInp = (e) => {
-    shotTypeInpList = [];
-    const row = getParent(e.target, ".content");
-    Array.from(shotTypeInp).map((item) => {
-      if (item.classList.contains("true")) {
-        shotTypeInpList.push(item.querySelector("label").innerHTML);
+            findShotTypeInp(e);
+          }
+        };
+        const findShotTypeInp = (e) => {
+          shotTypeInpList = [];
+          const row = getParent(e.target, ".content");
+          Array.from(shotTypeInp).map((item) => {
+            if (item.classList.contains("true")) {
+              if (!shotTypeInpList.includes(item.querySelector("label").innerHTML)) {
+                shotTypeInpList.push(item.querySelector("label").innerHTML);
+                let str = "";
+                for (let i = 0; i < shotTypeInpList.length; i++) {
+                  str += ` ${shotTypeInpList[i]} | `;
+                }
+                row.querySelector(".shot-type .popup-btn").innerHTML = str;
+              }
+            }
+            if (shotTypeInpList.length == 0) {
+              row.querySelector(".shot-type .popup-btn").innerHTML = "Shot type";
+            }
+          });
+        };
+      });
+    }
+  );
 
-        let str = "";
-        for (let i = 0; i < shotTypeInpList.length; i++) {
-          str += ` ${shotTypeInpList[i]} | `;
-        }
-
-        row.querySelector(".shot-type .popup-btn").innerHTML = str;
-      }
-      if (shotTypeInpList.length == 0) {
-        row.querySelector(".shot-type .popup-btn").innerHTML = "Shot type";
-      }
-    });
-  };
+ 
 
   /* equipment input */
-  let equipmentInpList = [];
+  Array.from(document.querySelectorAll(".equipment .content")).map(
+    (item, index) => {
+      let equipmentInpList = [];
+      const equipment = item.querySelectorAll(".equipment-input");
+      Array.from(equipment).map((itemInp) => {
+        itemInp.onclick = (e) => {
+          itemInp.classList.toggle("true");
+          if (itemInp.classList.contains("true")) {
+            itemInp.querySelector("input").checked = true;
+            if (
+              equipmentInpList.includes(itemInp.querySelector("label").innerHTML)
+            ) {
+              equipmentList = []
+            } else {
+              equipmentInpList.push(itemInp.querySelector("label").innerHTML);
+            }
 
-  const equipmentInp = document.querySelectorAll(".equipment-input");
-  Array.from(equipmentInp).map((item) => {
-    item.onclick = (e) => {
-      item.classList.toggle("true");
-      if (item.classList.contains("true")) {
-        item.querySelector("input").checked = true;
-        if (equipmentInpList.includes(item.querySelector("label").innerHTML)) {
-        } else {
-          equipmentInpList.push(item.querySelector("label").innerHTML);
-        }
-        let str = "";
-        for (let i = 0; i < equipmentInpList.length; i++) {
-          str += ` ${equipmentInpList[i]} | `;
-        }
-        const row = getParent(e.target, ".content");
+            let str = "";
+            for (let i = 0; i < equipmentInpList.length; i++) {
+              if(str.includes(equipmentInpList[i])){
 
-        if (
-          row.querySelector(".equipment .popup-btn").innerHTML != "" &&
-          row.querySelector(".equipment .popup-btn").innerHTML != "Equipment"
-        ) {
-          row.querySelector(".equipment .popup-btn").innerHTML += str;
-        } else {
-          row.querySelector(".equipment .popup-btn").innerHTML = str;
-        }
-      } else {
-        item.querySelector("input").checked = false;
+              } else{
 
-        findEquipmentInp(e);
-      }
-    };
-  });
+                str += ` ${equipmentInpList[i]} | `;
+              }
+              
+            }
+            const row = getParent(e.target, ".content");
+            if (
+              row.querySelector(".equipment .popup-btn").innerHTML != "" &&
+              row.querySelector(".equipment .popup-btn").innerHTML !=
+                "Equipment"
+            ) {
+              row.querySelector(".equipment .popup-btn").innerHTML = str;
+            } else {
+              row.querySelector(".equipment .popup-btn").innerHTML = str;
+            }
+          } else {
+            itemInp.querySelector("input").checked = false;
 
-  const findEquipmentInp = (e) => {
-    equipmentInpList = [];
-    const row = getParent(e.target, ".content");
-    Array.from(equipmentInp).map((item) => {
-      if (item.classList.contains("true")) {
-        equipmentInpList.push(item.querySelector("label").innerHTML);
-
-        let str = "";
-        for (let i = 0; i < equipmentInpList.length; i++) {
-          str += ` ${equipmentInpList[i]} | `;
-        }
-        row.querySelector(".equipment .popup-btn").innerHTML = str;
-      }
-      if (equipmentInpList.length == 0) {
-        row.querySelector(".equipment .popup-btn").innerHTML = "Equipment";
-      }
-    });
-  };
-
+            findEquipment(e);
+          }
+        };
+        const findEquipment = (e) => {
+          equipmentInpList = [];
+          const row = getParent(e.target, ".content");
+          Array.from(equipment).map((item) => {
+            if (item.classList.contains("true")) {
+              if (!equipmentInpList.includes(item.querySelector("label").innerHTML)) {
+                equipmentInpList.push(item.querySelector("label").innerHTML);
+                let str = "";
+                for (let i = 0; i < equipmentInpList.length; i++) {
+                  str += ` ${equipmentInpList[i]} | `;
+                }
+                row.querySelector(".equipment .popup-btn").innerHTML = str;
+              }
+            }
+            if (equipmentInpList.length == 0) {
+              row.querySelector(".equipment .popup-btn").innerHTML = "Equipment";
+            }
+          });
+        };
+      });
+    }
+  );
   /* camera movement input */
 
-  let cameraMovementList = [];
+  Array.from(document.querySelectorAll(".camera-movement .content")).map(
+    (item, index) => {
+      let cameraMovementInpList = [];
+      const cameraMovement = item.querySelectorAll(".camera-movement-input");
+      Array.from(cameraMovement).map((itemInp) => {
+        itemInp.onclick = (e) => {
+          itemInp.classList.toggle("true");
+          if (itemInp.classList.contains("true")) {
+            itemInp.querySelector("input").checked = true;
+            if (
+              cameraMovementInpList.includes(itemInp.querySelector("label").innerHTML)
+            ) {
+              cameraMovementInpList = []
+            } else {
+              cameraMovementInpList.push(itemInp.querySelector("label").innerHTML);
+            }
 
-  const cameraMovementInp = document.querySelectorAll(".camera-movement-input");
-  Array.from(cameraMovementInp).map((item) => {
-    item.onclick = (e) => {
-      item.classList.toggle("true");
-      if (item.classList.contains("true")) {
-        item.querySelector("input").checked = true;
-        if (
-          cameraMovementList.includes(item.querySelector("label").innerHTML)
-        ) {
-        } else {
-          cameraMovementList.push(item.querySelector("label").innerHTML);
-        }
-        let str = "";
-        for (let i = 0; i < cameraMovementList.length; i++) {
-          str += ` ${cameraMovementList[i]} | `;
-        }
-        const row = getParent(e.target, ".content");
-        if (
-          row.querySelector(".camera-movement .popup-btn").innerHTML != "" &&
-          row.querySelector(".camera-movement .popup-btn").innerHTML !=
-            "Camera Movement"
-        ) {
-          row.querySelector(".camera-movement .popup-btn").innerHTML += str;
-        } else {
-          row.querySelector(".camera-movement .popup-btn").innerHTML = str;
-        }
-      } else {
-        item.querySelector("input").checked = false;
+            let str = "";
+            for (let i = 0; i < cameraMovementInpList.length; i++) {
+              if(str.includes(cameraMovementInpList[i])){
 
-        findCameraMovementInp(e);
-      }
-    };
-  });
+              } else{
 
-  const findCameraMovementInp = (e) => {
-    cameraMovementList = [];
-    const row = getParent(e.target, ".content");
-    Array.from(cameraMovementInp).map((item) => {
-      if (item.classList.contains("true")) {
-        cameraMovementList.push(item.querySelector("label").innerHTML);
+                str += ` ${cameraMovementInpList[i]} | `;
+              }
+              
+            }
+            const row = getParent(e.target, ".content");
+            if (
+              row.querySelector(".camera-movement .popup-btn").innerHTML != "" &&
+              row.querySelector(".camera-movement .popup-btn").innerHTML !=
+                "camera-movement"
+            ) {
+              row.querySelector(".camera-movement .popup-btn").innerHTML = str;
+            } else {
+              row.querySelector(".camera-movement .popup-btn").innerHTML = str;
+            }
+          } else {
+            itemInp.querySelector("input").checked = false;
 
-        let str = "";
-        for (let i = 0; i < cameraMovementList.length; i++) {
-          str += ` ${cameraMovementList[i]} | `;
-        }
-        row.querySelector(".camera-movement .popup-btn").innerHTML = str;
-      }
-      if (cameraMovementList.length == 0) {
-        row.querySelector(".camera-movement .popup-btn").innerHTML =
-          "Camera movement";
-      }
-    });
-  };
+            findCameraMovement(e);
+          }
+        };
+        const findCameraMovement = (e) => {
+          cameraMovementInpList = [];
+          const row = getParent(e.target, ".content");
+          Array.from(cameraMovement).map((item) => {
+            if (item.classList.contains("true")) {
+              if (!cameraMovementInpList.includes(item.querySelector("label").innerHTML)) {
+                cameraMovementInpList.push(item.querySelector("label").innerHTML);
+                let str = "";
+                for (let i = 0; i < cameraMovementInpList.length; i++) {
+                  str += ` ${cameraMovementInpList[i]} | `;
+                }
+                row.querySelector(".camera-movement .popup-btn").innerHTML = str;
+              }
+            }
+            if (cameraMovementInpList.length == 0) {
+              row.querySelector(".camera-movement .popup-btn").innerHTML = "Camera Movement";
+            }
+          });
+        };
+      });
+    }
+  );
   /* scene */
 
   const sceneInp = document.querySelectorAll(".scene input");
@@ -1309,7 +1376,7 @@ window.onload = () => {
 const render = (datas) => {
   const rows = document.querySelectorAll(".col");
   for (let i = 0; i < datas.length; i++) {
-    Array.from(rows).map((item, i) => {
+    Array.from(rows).map((item, index) => {
       if (item.classList.contains("setup")) {
         document.querySelector(".setup.col").innerHTML += setupRow;
       }
@@ -1346,22 +1413,22 @@ const render = (datas) => {
                 <ul>
                   <li class="shot-size-input">
                     <input
-                      type="radio"
-                      name="shot-size-${i}"
+                      type="radio"name="shot-size-${i}"
+                      
                     />
                     <label >Close-up</label>
                   </li>
                   <li class="shot-size-input">
                     <input
-                      type="radio"
-                      name="shot-size-${i}"
+                      type="radio"name="shot-size-${i}"
+                      
                     />
                     <label >Medium close-up</label>
                   </li>
                   <li class="shot-size-input">
                     <input
-                      type="radio"
-                      name="shot-size-${i}"
+                      type="radio"name="shot-size-${i}"
+                      
                     />
                     <label 
                       >Extreme close-up</label
@@ -1369,9 +1436,9 @@ const render = (datas) => {
                   </li>
                   <li class="shot-size-input">
                     <input
-                      
-                      type="radio"
                       name="shot-size-${i}"
+                      type="radio"
+                      
                     />
                     <label >Wide close-up</label>
                   </li>
@@ -1382,24 +1449,24 @@ const render = (datas) => {
                 <ul>
                   <li class="shot-size-input">
                     <input
-                      type="radio"
-                      name="shot-size-${i}"
+                      type="radio"name="shot-size-${i}"
+                      
                       
                     />
                     <label >Medium Shot</label>
                   </li>
                   <li class="shot-size-input">
                     <input
-                      type="radio"
-                      name="shot-size-${i}"
+                      type="radio"name="shot-size-${i}"
+                      
                       
                     />
                     <label >Close Shot</label>
                   </li>
                   <li class="shot-size-input">
                     <input
-                      type="radio"
-                      name="shot-size-${i}"
+                      type="radio"name="shot-size-${i}"
+                      
                       
                     />
                     <label 
@@ -1408,9 +1475,9 @@ const render = (datas) => {
                   </li>
                   <li class="shot-size-input">
                     <input
-                      
-                      type="radio"
                       name="shot-size-${i}"
+                      type="radio"
+                      
                     />
                     <label>Wide close-up</label>
                   </li>
@@ -1423,16 +1490,16 @@ const render = (datas) => {
                 <ul>
                   <li class="shot-size-input">
                     <input
-                      type="radio"
-                      name="shot-size-${i}"
+                      type="radio"name="shot-size-${i}"
+                      
                       
                     />
                     <label>Wide Shot</label>
                   </li>
                   <li class="shot-size-input">
                     <input
-                      type="radio"
-                      name="shot-size-${i}"
+                      type="radio"name="shot-size-${i}"
+                      
                       
                     />
                     <label 
@@ -1441,17 +1508,17 @@ const render = (datas) => {
                   </li>
                   <li class="shot-size-input">
                     <input
-                      type="radio"
-                     name="shot-size-${i}"
+                      type="radio"name="shot-size-${i}"
+                     
                       
                     />
                     <label >Full Shot</label>
                   </li>
                   <li class="shot-size-input">
                     <input
-                      
-                      type="radio"
                       name="shot-size-${i}"
+                      type="radio"
+                      
                     />
                     <label 
                       >Medium Full Shot</label
@@ -1459,17 +1526,17 @@ const render = (datas) => {
                   </li>
                   <li class="shot-size-input">
                     <input
-                      type="radio"
-                      name="shot-size-${i}"
+                      type="radio"name="shot-size-${i}"
+                      
                       
                     />
                     <label >Long Shot</label>
                   </li>
                   <li class="shot-size-input">
                     <input
-                      
-                      type="radio"
                       name="shot-size-${i}"
+                      type="radio"
+                      
                     />
                     <label 
                       >Extreme Long Shot</label
@@ -1490,6 +1557,54 @@ const render = (datas) => {
         document.querySelector(".image").innerHTML += imageRow;
       }
       if (item.classList.contains("int")) {
+        const intRow = ` <div class="content">
+<div class="popup-btn">Int/Ext – Day/Night </div>
+<div class="modal-al">
+  <div class="row">
+    <div class="col-12">
+      
+      <div class="list">
+        <h3>
+          Int/Ext – Day/Night 
+        </h3>
+        <ul>
+          <li class="int-input">
+            <input
+              type="radio"
+              name="int-${i}"
+            />
+            <label for="Int-Day">Int-Day</label>
+          </li>
+          <li class="int-input">
+            <input
+              type="radio"
+              name="int-${i}"
+            />
+            <label for="Int-Night">Int-Night</label>
+          </li>
+          <li class="int-input">
+            <input
+              type="radio"
+              name="int-${i}"
+            />
+            <label for="Ext-Day"
+              >Ext-Day</label
+            >
+          </li>
+          <li class="int-input">
+            <input
+              type="radio"
+              name="int-${i}"
+            />
+            <label for="Ext-Night">Ext-Night</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+   
+  </div>
+</div>
+</div>`;
         document.querySelector(".int").innerHTML += intRow;
       }
       if (item.classList.contains("camera-movement")) {
@@ -1724,13 +1839,11 @@ const save = () => {
           }
         });
         let shotSizeInp = [];
-        shotSizeInp = shotSizes[i]
-          .querySelectorAll("input")
-          .map((item, index) => {
-            if (item.checked == true) {
-              return index;
-            }
-          });
+        shotSizes[i].querySelectorAll("input").forEach((item, index) => {
+          if (item.checked) {
+            shotSizeInp.push(index);
+          }
+        });
         let obj = {
           image: `${images[i].src ? images[i].src : ""}`,
           scene: `${scenes[i].value != undefined ? scenes[i].value : ""}`,
@@ -1755,8 +1868,8 @@ const save = () => {
         };
         set(ref(db, "shotlist/" + obj.scene), obj);
       }
+      console.log("Save func run");
     }
-    console.log("Save func run");
   } catch (e) {
     console.error("Error adding document: ", e);
   }

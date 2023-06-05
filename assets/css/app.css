@@ -140,7 +140,7 @@ label {
 }
 
 .new-btn {
-  background-color: #B0DAFF;
+  background-color: #b0daff;
   border-radius: 100%;
   font-size: 12px;
   font-weight: 700;
@@ -176,7 +176,7 @@ label {
   transition: 0.2s ease;
   height: 10px;
   opacity: 0;
-  border: 2px solid #B0DAFF;
+  border: 2px solid #b0daff;
 }
 .new-btn .save-btn {
   font-size: 15px;
@@ -188,12 +188,6 @@ label {
 }
 .table-row {
   display: flex;
-}
-.table .image {
-  visibility: hidden;
-}
-.table .image.active {
-  visibility: visible;
 }
 .table img {
   width: 80px;
@@ -235,6 +229,15 @@ label {
 .table .col h2:hover img {
   opacity: 1;
 }
+.table .image .content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.table .image img {
+  width: 130px;
+  height: 130px;
+}
 .table .content {
   border-top: 1.5px solid #f0eeee;
   padding: 10px;
@@ -249,7 +252,8 @@ label {
 .table textarea {
   height: 100px;
 }
-.table input, .table textarea {
+.table input,
+.table textarea {
   text-align: center;
   width: 100%;
   background-color: transparent;
